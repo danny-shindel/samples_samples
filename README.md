@@ -5,4 +5,9 @@ To sync with the repo's code:
 
 
 test by danny
+<<<<<<< HEAD
 TEST BY ERWIN
+=======
+
+test by jackarak
+>>>>>>> main
