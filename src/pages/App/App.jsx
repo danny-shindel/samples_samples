@@ -4,11 +4,15 @@ import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import ResultsPage from '../ResultsPage/ResultsPage';
 import HomePage from '../HomePage/HomePage';
+import IndexPage from '../IndexPage/IndexPage';
+import CreatePage from '../CreatePage/CreatePage';
 import NavBar from '../../components/NavBar/NavBar';
+
 import './App.css';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [click, setClick] = useState(null);
   
   return (
     <main className="App">
@@ -22,21 +26,31 @@ export default function App() {
             <Route path="/home">
               <HomePage />
             </Route>
-            <Redirect to="/home" />
+            <Route path="/index">
+              <IndexPage />
+            </Route>
+            <Route path="/create">
+              <CreatePage />
+            </Route>
+            <Redirect to={click ? "/results" : "/home"} />
           </Switch>
         </>
         :
         <>
           <Switch>
             <Route path="/results">
-              <ResultsPage />
+              <ResultsPage setClick={setClick} />
             </Route>
             <Route path="/home">
               <HomePage />
             </Route>
+            <Route path="/auth">
+              <AuthPage user={user} setUser={setUser} click={click} setClick={setClick} />
+            </Route>
             <Redirect to="/home" />
           </Switch>
         </>
+        
       }
     </main>
   );

@@ -11,9 +11,11 @@ export default function NavBar({ user, setUser }) {
     <nav>
       { user ?
         <>
-          <Link to="/home">Order History</Link>
-        & nbsp; | &nbsp;
-          <Link to="/orders/new">New Order</Link>
+          <Link to="/home">Search</Link>
+        &nbsp; | &nbsp;
+          <Link to="/index">My Playlist</Link>
+        &nbsp; | &nbsp;
+          <Link to="/index">Saved</Link>
       &nbsp; | &nbsp;
           <span>Welcome, {user.name}</span>
       &nbsp; | &nbsp;
