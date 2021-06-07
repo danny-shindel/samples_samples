@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
 
-export default function LogIn({ setUser }) {
+export default function LogIn({ setUser, click, setClick }) {
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -17,6 +17,7 @@ export default function LogIn({ setUser }) {
     evt.preventDefault();
     try {
       const user = await usersService.login(credentials);
+      setClick(click)
       setUser(user);
     } catch {
       setError('Log In Failed - Try Again');
