@@ -13,6 +13,7 @@ import './App.css';
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [click, setClick] = useState(null);
+  const [wine, setWine] = useState(null);
   
   return (
     <main className="App">
@@ -21,10 +22,10 @@ export default function App() {
         <>
           <Switch>
             <Route path="/results">
-              <ResultsPage user={user}/>
+              <ResultsPage user={user} wine={wine}/>
             </Route>
             <Route path="/home">
-              <HomePage />
+              <HomePage setWine={setWine} />
             </Route>
             <Route path="/index">
               <IndexPage />
