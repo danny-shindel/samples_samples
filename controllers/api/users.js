@@ -16,6 +16,7 @@ function checkToken(req, res) {
 }
 
 async function create(req, res) {
+  console.log("HEREEEE");
   try {
     const user = await User.create(req.body);
     const token = createJWT(user);
