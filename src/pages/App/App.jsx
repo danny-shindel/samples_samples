@@ -5,6 +5,7 @@ import AuthPage from '../AuthPage/AuthPage';
 import ResultsPage from '../ResultsPage/ResultsPage';
 import HomePage from '../HomePage/HomePage';
 import IndexPage from '../IndexPage/IndexPage';
+import PlaylistPage from '../PlaylistPage/PlaylistPage';
 import CreatePage from '../CreatePage/CreatePage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as winesAPI from "../../utilities/wines-api";
@@ -42,6 +43,9 @@ export default function App() {
             </Route>
             <Route path="/create">
               <CreatePage />
+            </Route>
+            <Route path="/playlist">
+              <PlaylistPage />
             </Route>
             <Redirect to={click ? "/results" : "/home"} />
           </Switch>
