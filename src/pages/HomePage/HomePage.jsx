@@ -4,7 +4,7 @@ import { useState } from 'react';
 import * as winesAPI from "../../utilities/wines-api";
 
 
-export default function HomePage({ setWine }) {
+export default function HomePage({ setWine, wineTitles }) {
   const [search, setSearch] = useState({ title: '' });
   const history = useHistory();
   
@@ -14,8 +14,13 @@ export default function HomePage({ setWine }) {
 
   async function handleSubmit() {
     const wine = await winesAPI.search(search);
-    setWine(wine);
-    history.push('/results');
+    // If there is a wine of that name, then go to results page
+    if (wine) {
+      setWine(wine);
+      history.push('/results');
+    } else {
+      // inform user there is no wine by that name
+    }
   }
 
   return (

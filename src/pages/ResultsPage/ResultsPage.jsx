@@ -8,7 +8,7 @@ export default function ResultsPage({ user, setClick, wine }) {
 
   return(
   <div>
-    <div>{wine.title}</div>
+    <div>{wine && wine.title}</div>
     <h1>ResultsPage</h1>
     { user ?
     <button>Save</button>
