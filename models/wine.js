@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const infoSchema = new Schema({
+const wineSchema = new Schema({
   points: Number,
   title: String,
   description: String,
@@ -14,13 +14,8 @@ const infoSchema = new Schema({
   region_2: String,
   province: String,
   country: String,
-  winery: String
-}, {
-  timestamps: true
-});
-
-const wineSchema = new Schema({
-  info: { infoSchema }
+  winery: String,
+  TEST: String
 });
 
 module.exports = mongoose.model('Wine', wineSchema);
