@@ -13,7 +13,7 @@ export default function NavBar({ user, setUser }) {
         <>
           <Link to="/home">Search</Link>
           &nbsp; | &nbsp;
-          <Link to="/index">My Playlist</Link>
+          <Link to="/index">My Playlists</Link>
           &nbsp; | &nbsp;
           <Link to="/index">Saved</Link>
           &nbsp; | &nbsp;
