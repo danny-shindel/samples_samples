@@ -11,6 +11,7 @@ export default function HomePage({ setWine, wineTitles }) {
 
   
   function handleChange(evt) {
+    evt.target.value.length ? setDisplay(true) : setDisplay(false);
     setSearch({[evt.target.name]: evt.target.value});
   }
 
@@ -40,20 +41,19 @@ export default function HomePage({ setWine, wineTitles }) {
           type="text" 
           name="title" 
           onChange={handleChange} 
-          onClick={() => setDisplay(!display)} 
           value={search.title} 
           required
           />
         </div>
-        <div className="dropdown-menu">
+        <div className="dropdown-menu" style={{ overflowY: 'hidden' }}>
           { display && (
-            <div className="dropdown-content">
+            <div className="dropdown-content" style={{ overflowY: 'scroll', height: '60vh' }}>
               { wineTitles
                 .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
                 .map((wine, idx) => {
                     return(
                       <div key={idx}>
-                        <div className="dropdown-item" onClick={() => setSearchedWine(wine)}>{ wine.title }</div>
+                        <div className="dropdown-item" onClick={() => setSearchedWine(wine)} tabIndex="0">{ wine.title }</div>
                         <hr className="dropdown-divider" />
                       </div>
                     )
