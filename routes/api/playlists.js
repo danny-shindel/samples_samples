@@ -4,8 +4,10 @@ const playlistsCtrl = require('../../controllers/api/playlists');
 
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
-// POST /api/playlists
+// POST /api/playlist/seachAPI
 router.post('/searchAPI', playlistsCtrl.searchAPI);
+// POST /api/playlists/create
+router.post('/create', playlistsCtrl.create);
 
 
 

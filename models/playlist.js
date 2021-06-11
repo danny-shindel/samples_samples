@@ -5,7 +5,7 @@ const playlistSchema = new Schema({
   title: String,
   coverImage: String,
   about: String,
-  // songs: [songSchema],
+  songs: [],
   // comments: [commentSchema],
   user: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {

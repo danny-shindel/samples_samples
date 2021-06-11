@@ -2,7 +2,8 @@ const Wine = require("../../models/wine");
 
 module.exports = {
     search,
-    getTitles
+    getTitles, 
+    addPlaylist
 }
 
 async function search(req, res) {
@@ -13,4 +14,11 @@ async function search(req, res) {
 async function getTitles(req, res) {
     const wines = await Wine.find({}, 'title')
     res.json(wines);
+}
+
+async function addPlaylist(req, res) {
+    const newWine = await Wine.findById(`${req.params.id}`);
+    newWine.playlists.push(req.body._id);
+    newWine.save();
+    res.json(newWine);
 }

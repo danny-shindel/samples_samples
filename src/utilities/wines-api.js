@@ -9,3 +9,7 @@ export function search(search) {
 export function getAll() {
     return sendRequest(BASE_URL, 'GET');
 }
+
+export function addPlaylist(wine, newPlaylist) {
+    return sendRequest(`${BASE_URL}/${wine._id}`, 'PUT', newPlaylist);
+}
