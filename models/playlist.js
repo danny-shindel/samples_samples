@@ -8,6 +8,8 @@ const playlistSchema = new Schema({
   // songs: [songSchema],
   // comments: [commentSchema],
   user: {type: Schema.Types.ObjectId, ref: 'User'},
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Playlist', playlistSchema);
