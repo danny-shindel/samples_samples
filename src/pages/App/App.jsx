@@ -47,7 +47,7 @@ export default function App() {
             <Route path="/playlist">
               <PlaylistPage />
             </Route>
-            <Redirect to={click ? "/results" : "/home"} />
+            <Redirect to={click ? click===1 ? '/results' : '/create' : "/home"} />
           </Switch>
         </>
         :
