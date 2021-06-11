@@ -11,9 +11,15 @@ export default function ResultsPage({ user, setClick, wine }) {
     <div>{wine && wine.title}</div>
     <h1>ResultsPage</h1>
     { user ?
-    <button>Save</button>
+    <>
+      <button>Save</button>
+      <button>CreatePlaylist</button>
+    </>
     :
-    <Link to='/auth'><button onClick={() => setClick(1)}>Login</button></Link>
+    <>
+      <Link to='/auth'><button onClick={() => setClick(1)}>Save (login)</button></Link>
+      <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
+    </>
     }
   </div>
   ) 
