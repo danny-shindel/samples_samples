@@ -10,4 +10,7 @@ router.post('/', winesCtrl.search);
 // GET /api/wines
 router.get('/', winesCtrl.getTitles);
 
+// PUT /api/wine/id
+router.put('/:id', winesCtrl.addPlaylist);
+
 module.exports = router;

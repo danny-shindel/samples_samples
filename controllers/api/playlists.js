@@ -3,10 +3,10 @@ const fetch = require('node-fetch');
 
 module.exports = {
     searchAPI,
+    create
 };
 
 async function searchAPI(req, res) {
-    console.log('here')
     const resultsAPI = await fetch(`https://genius.p.rapidapi.com/search?q=${req.body.searchAPI}`, {
         "method": "GET",
         "headers": {
@@ -16,5 +16,9 @@ async function searchAPI(req, res) {
     })
     const results = await resultsAPI.json()
     res.json(results.data)
-}
+};
 
+async function create(req,res){
+    const newPlaylist = await Playlist.create(req.body);
+    res.json(newPlaylist);
+};

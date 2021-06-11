@@ -42,7 +42,7 @@ export default function App() {
               <IndexPage />
             </Route>
             <Route path="/create">
-              <CreatePage />
+              <CreatePage wine={wine} setWine={setWine} />
             </Route>
             <Route path="/playlist">
               <PlaylistPage />

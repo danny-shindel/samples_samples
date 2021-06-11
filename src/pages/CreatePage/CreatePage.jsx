@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import * as playlistAPI from '../../utilities/playlist-api'
+import * as wineAPI from '../../utilities/wines-api'
 
-export default function CreatePage({ user }) {
+export default function CreatePage({ wine, setWine }) {
   const [playlist, setPlaylist] = useState({
     title: "",
     about:"",
@@ -35,6 +36,10 @@ export default function CreatePage({ user }) {
     setPlaylist({...playlist, songs: newSongs});
   }
 
+  async function handleSavePlaylist() {
+    const newPlaylist = await playlistAPI.create(playlist);
+    const updatedWine = await wineAPI.addPlaylist(wine, newPlaylist);
+  }
 
 
 
@@ -63,7 +68,7 @@ export default function CreatePage({ user }) {
         </>
           )}
       </div>
-      <button>SAVE PLAYLIST</button>
+      <button onClick={handleSavePlaylist}>SAVE PLAYLIST</button>
     </>
   )
 }
