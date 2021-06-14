@@ -9,6 +9,23 @@ export default function ResultsPage({ user, setClick, wine }) {
   return(
   <div>
     <div>{wine && wine.title}</div>
+      {wine.playlists.map(playlist => (
+        <>
+        <div>Title:</div>
+          <div>{playlist.title}</div>
+          <div>About:</div>
+          <p>{playlist.about}</p>
+          <div>Songs:</div>
+          {playlist.songs.map(song => (
+            <>
+              <p>{song.title} - {song.artist.name}</p>
+            </>
+        ))}
+        <button>Save Playlist</button>
+        <hr/>
+        </>
+      ))}
+
     <h1>ResultsPage</h1>
     { user ?
     <>
