@@ -12,4 +12,10 @@ const playlistSchema = new Schema({
   timestamps: true
 });
 
+playlistSchema.statics.getUserPlaylists = async function(userId){
+  const myPlaylists = await this.find({user: userId}); 
+  // const savedPlaylists = await this.find({})
+  return {'myPlaylists': myPlaylists, 'savedPlaylists': 'savedPlaylists'};
+}
+
 module.exports = mongoose.model('Playlist', playlistSchema);
