@@ -12,8 +12,8 @@ export default function ResultsPage({ user, setClick, wine }) {
     <h1>ResultsPage</h1>
     { user ?
     <>
-      <button>Save</button>
-      <button>CreatePlaylist</button>
+      <button >Save</button>
+      <Link to='/create'><button>CreatePlaylist</button></Link>
     </>
     :
     <>

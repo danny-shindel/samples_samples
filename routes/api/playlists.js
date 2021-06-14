@@ -8,6 +8,8 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 router.post('/searchAPI', playlistsCtrl.searchAPI);
 // POST /api/playlists/create
 router.post('/create', playlistsCtrl.create);
+// GET /api/playlists/userPlaylist
+router.get('/userPlaylists', playlistsCtrl.getUserPlaylists);
 
 
 

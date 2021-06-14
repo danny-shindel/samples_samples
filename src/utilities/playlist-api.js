@@ -10,4 +10,9 @@ export function create(playlist) {
     return sendRequest(`${BASE_URL}/create`, 'POST', playlist);
 };
 
+export function getUserPlaylists() { 
+    return sendRequest(`${BASE_URL}/userPlaylists`);
+};
+
+
 

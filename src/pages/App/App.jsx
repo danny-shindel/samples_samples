@@ -17,6 +17,7 @@ export default function App() {
   const [click, setClick] = useState(null);
   const [user, setUser] = useState(getUser());
   const [wineTitles, setWineTitles] = useState([]);
+  const [myPlaylist, setMyPlaylist] = useState(false);
 
   useEffect(function() {
     async function getWines() {
@@ -28,7 +29,7 @@ export default function App() {
 
   return (
     <main className="App">
-      <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} setMyPlaylist={setMyPlaylist} />
       { user ? 
         <>
           <Switch>
@@ -39,10 +40,10 @@ export default function App() {
               <HomePage setWine={setWine} wineTitles={wineTitles} />
             </Route>
             <Route path="/index">
-              <IndexPage />
+              <IndexPage myPlaylist={myPlaylist} />
             </Route>
             <Route path="/create">
-              <CreatePage wine={wine} setWine={setWine} />
+              <CreatePage wine={wine} setWine={setWine} setMyPlaylist={setMyPlaylist} />
             </Route>
             <Route path="/playlist">
               <PlaylistPage />
