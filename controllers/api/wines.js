@@ -7,7 +7,7 @@ module.exports = {
 }
 
 async function search(req, res) {
-    const wine = await Wine.findOne({title: req.body.title});
+    const wine = await Wine.findOne({title: req.body.title}).populate('playlists').exec();
     res.json(wine);
 }
 
