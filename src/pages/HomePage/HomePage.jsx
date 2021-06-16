@@ -43,6 +43,7 @@ export default function HomePage({ setWine, wineTitles }) {
           onChange={handleChange} 
           value={search.title} 
           required
+          autocomplete="off"
           />
         </div>
         <div className="dropdown-menu" style={{ overflowY: 'hidden' }}>

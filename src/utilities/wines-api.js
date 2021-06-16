@@ -13,3 +13,7 @@ export function getAll() {
 export function addPlaylist(wine, newPlaylist) {
     return sendRequest(`${BASE_URL}/${wine._id}`, 'PUT', newPlaylist);
 }
+
+export function addSavedPlaylist(updatedData, wineId) {
+    return sendRequest(`${BASE_URL}/${wineId}/updateSaved`, 'PUT', updatedData);
+}

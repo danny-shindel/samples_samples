@@ -12,5 +12,7 @@ router.get('/', winesCtrl.getTitles);
 
 // PUT /api/wine/id
 router.put('/:id', winesCtrl.addPlaylist);
+// PUT /api/wine/id
+router.put('/:id/updateSaved', winesCtrl.addSavedPlaylists);
 
 module.exports = router;
