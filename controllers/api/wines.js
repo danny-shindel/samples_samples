@@ -3,11 +3,18 @@ const Wine = require("../../models/wine");
 module.exports = {
     search,
     getTitles, 
-    addPlaylist
+    addPlaylist,
+    addSavedPlaylists
 }
 
 async function search(req, res) {
-    const wine = await Wine.findOne({title: req.body.title}).populate('playlists').exec();
+    const wine = await Wine.findOne({title: req.body.title})
+    // Deep Populate for nested _ids
+    .populate({
+        path: 'playlists',
+        populate: {path: 'user'}
+    })
+    .exec();
     res.json(wine);
 }
 
@@ -21,4 +28,15 @@ async function addPlaylist(req, res) {
     newWine.playlists.push(req.body._id);
     newWine.save();
     res.json(newWine);
+}
+
+async function addSavedPlaylists(req, res) {
+    const wine = await Wine.findById(req.params.id).populate('playlists').exec()
+    // use .id in query when we need the string version of ._id
+    let playlist = wine.playlists.find(playlist => playlist.id === req.body.playlistId);
+    if (!playlist.saved.includes(req.user._id)) {
+        playlist.saved.push(req.user._id);
+    }
+    wine.save();
+    res.json(wine);
 }

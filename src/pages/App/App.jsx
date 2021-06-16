@@ -34,7 +34,7 @@ export default function App() {
         <>
           <Switch>
             <Route path="/results">
-              <ResultsPage user={user} wine={wine}/>
+              <ResultsPage user={user} wine={wine} setWine={setWine} />
             </Route>
             <Route path="/home">
               <HomePage setWine={setWine} wineTitles={wineTitles} />
