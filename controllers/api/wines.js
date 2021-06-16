@@ -37,6 +37,7 @@ async function addSavedPlaylists(req, res) {
     if (!playlist.saved.includes(req.user._id)) {
         playlist.saved.push(req.user._id);
     }
-    wine.save();
+    // save the playlist doc
+    playlist.save();
     res.json(wine);
 }
