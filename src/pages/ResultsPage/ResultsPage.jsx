@@ -39,7 +39,9 @@ export default function ResultsPage({ user, setClick, wine, setWine }) {
               <p>{song.title} - {song.artist.name}</p>
             </>
         ))}
-        <button onClick={() => savePlaylist(playlist._id)}>Save Playlist</button>
+        <button onClick={() => savePlaylist(playlist._id)}>
+          {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
+        </button>
         <hr/>
         </>
       ))}
