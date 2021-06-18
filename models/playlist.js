@@ -7,8 +7,8 @@ const playlistSchema = new Schema({
   about: String,
   songs: [],
   saved: [{type: Schema.Types.ObjectId, ref: 'User'}],
-  // comments: [commentSchema],
   user: {type: Schema.Types.ObjectId, ref: 'User'},
+  // comments: [commentSchema],
 }, {
   timestamps: true
 });

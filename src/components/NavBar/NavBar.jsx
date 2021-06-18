@@ -2,7 +2,7 @@ import { findAllByDisplayValue } from '@testing-library/dom';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
-export default function NavBar({ user, setUser, setMyPlaylist }) {
+export default function NavBar({ user, setUser, setMyPlaylistPage }) {
   function handleLogOut() {
     userService.logOut();
     setUser(null);
@@ -14,9 +14,9 @@ export default function NavBar({ user, setUser, setMyPlaylist }) {
         <>
           <Link to="/home">Search</Link>
           &nbsp; | &nbsp;
-          <Link to="/index" onClick={() => setMyPlaylist(true)}>My Playlists</Link>
+          <Link to="/index" onClick={() => setMyPlaylistPage(true)}>My Playlists</Link>
           &nbsp; | &nbsp;
-          <Link to="/index" onClick={() => setMyPlaylist(false)}>Saved</Link>
+          <Link to="/index" onClick={() => setMyPlaylistPage(false)}>Saved</Link>
           &nbsp; | &nbsp;
           <span>Welcome, {user.name}</span>
           &nbsp; | &nbsp;
