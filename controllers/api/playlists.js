@@ -8,10 +8,10 @@ module.exports = {
 };
 
 async function searchAPI(req, res) {
-    const resultsAPI = await fetch(`https://genius.p.rapidapi.com/search?q=${req.body.searchAPI}`, {
+    const resultsAPI = await fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${req.body.searchAPI}`, {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": process.env.GENIUS_KEY,
+            "x-rapidapi-key": process.env.DEEZER_KEY,
             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
         }
     })

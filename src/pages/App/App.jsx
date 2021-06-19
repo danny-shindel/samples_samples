@@ -13,23 +13,28 @@ import * as winesAPI from "../../utilities/wines-api";
 import './App.css';
 
 export default function App() {
-  const [wine, setWine] = useState(null);
+  const [allWines, setAllWines] = useState([]);
   const [click, setClick] = useState(null);
+  const [playlists, setPlaylists] = useState([]);
+  const [myPlaylistPage, setMyPlaylistPage] = useState(false);
   const [user, setUser] = useState(getUser());
+  const [wine, setWine] = useState(null);
   const [wineTitles, setWineTitles] = useState([]);
-  const [myPlaylist, setMyPlaylist] = useState(false);
 
   useEffect(function() {
     async function getWines() {
       const wines = await winesAPI.getAll();
-      setWineTitles(wines);
+      setAllWines(wines);
+      setWineTitles(wines.map(w => {
+        return {title: w.title};
+      }));
     }
     getWines();
   }, []);
 
   return (
     <main className="App">
-      <NavBar user={user} setUser={setUser} setMyPlaylist={setMyPlaylist} />
+      <NavBar user={user} setUser={setUser} setMyPlaylistPage={setMyPlaylistPage} />
       { user ? 
         <>
           <Switch>
@@ -40,10 +45,10 @@ export default function App() {
               <HomePage setWine={setWine} wineTitles={wineTitles} />
             </Route>
             <Route path="/index">
-              <IndexPage myPlaylist={myPlaylist} />
+              <IndexPage user={user} myPlaylistPage={myPlaylistPage} playlists={playlists} setPlaylists={setPlaylists} allWines={allWines} />
             </Route>
             <Route path="/create">
-              <CreatePage wine={wine} setWine={setWine} setMyPlaylist={setMyPlaylist} />
+              <CreatePage wine={wine} setWine={setWine} setMyPlaylistPage={setMyPlaylistPage} />
             </Route>
             <Route path="/playlist">
               <PlaylistPage />

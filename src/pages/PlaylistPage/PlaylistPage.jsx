@@ -19,7 +19,7 @@ export default function PlaylistPage({ user }) {
     <>
       <h1>PlaylistPage</h1>
       <input name="title" onChange={handleChange}></input>
-      <input></input>
+      {/* <input></input> */}
       <button onClick={handleCreate}>Create Playlist</button>
     </>
   );
