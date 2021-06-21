@@ -1,20 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
 
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines }) {
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, userWines, setUserWines }) {
   
   useEffect(function(){
     async function getPlaylists(){
       const userPlaylists = await playlistAPI.getUserPlaylists();
       setPlaylists(userPlaylists);
     }
+    setUserWines(allWines.filter(w => (
+      w.playlists.some(p => p.user == user._id)
+    )))
     getPlaylists();
-  }, []);
-  
-  const userWines = allWines.filter(w => (
-    w.playlists.some(p => p.user == user._id)
-  ));
+  }, [ allWines ]);
 
   return (
     <>
@@ -35,7 +34,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
                   <br />
                 </>
               ))}
-                <br />
+                <hr/>
             </div>
           ))}
           {/* {playlists.myPlaylists.map(p => (

@@ -26,8 +26,9 @@ async function getTitles(req, res) {
 async function addPlaylist(req, res) {
     const newWine = await Wine.findById(`${req.params.id}`);
     newWine.playlists.push(req.body._id);
-    newWine.save();
-    res.json(newWine);
+    await newWine.save()
+    const wines = await Wine.find({}).populate('playlists').exec();
+    res.json(wines);
 }
 
 async function addSavedPlaylists(req, res) {

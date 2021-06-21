@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api'
 import * as wineAPI from '../../utilities/wines-api'
 
-export default function CreatePage({ wine, setWine }) {
+export default function CreatePage({ wine, setAllWines}) {
   const history = useHistory();
   const [playlist, setPlaylist] = useState({
     title: "",
@@ -40,7 +40,8 @@ export default function CreatePage({ wine, setWine }) {
 
   async function handleSavePlaylist() {
     const newPlaylist = await playlistAPI.create(playlist);
-    const updatedWine = await wineAPI.addPlaylist(wine, newPlaylist);
+    const wines = await wineAPI.addPlaylist(wine, newPlaylist);
+    setAllWines(wines)
     history.push('/index');
   }
 
