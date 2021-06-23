@@ -41,11 +41,21 @@ export default function App() {
             <Route path="/results">
               <ResultsPage user={user} wine={wine} setWine={setWine} />
             </Route>
+            {/* <Route path="/wines/:id">
+              <ResultsPage user={user} wine={wine} setWine={setWine} />
+            </Route> */}
             <Route path="/home">
               <HomePage setWine={setWine} wineTitles={wineTitles} />
             </Route>
             <Route path="/index">
-              <IndexPage user={user} myPlaylistPage={myPlaylistPage} playlists={playlists} setPlaylists={setPlaylists} allWines={allWines} />
+              <IndexPage 
+                user={user}
+                myPlaylistPage={myPlaylistPage}
+                playlists={playlists}
+                setPlaylists={setPlaylists}
+                allWines={allWines}
+                setWine={setWine}
+              />
             </Route>
             <Route path="/create">
               <CreatePage wine={wine} setWine={setWine} setMyPlaylistPage={setMyPlaylistPage} />

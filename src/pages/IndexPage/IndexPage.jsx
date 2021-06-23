@@ -1,21 +1,31 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
-
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines }) {
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine }) {
+  const [userWines, setUserWines] = useState([])
+  const history = useHistory();
   
   useEffect(function(){
     async function getPlaylists(){
       const userPlaylists = await playlistAPI.getUserPlaylists();
       setPlaylists(userPlaylists);
     }
+    const userWines1 = allWines.filter(w => (
+    w.playlists.some(p => p.user == user._id)
+    ));
+    setUserWines(userWines1)
     getPlaylists();
   }, []);
-  
-  const userWines = allWines.filter(w => (
-    w.playlists.some(p => p.user == user._id)
-  ));
 
+  function handleDetails(wine) {
+    setWine(wine);
+    history.push("/results");
+  }
+  
+  // const userWines = allWines.filter(w => (
+  //   w.playlists.some(p => p.user == user._id)
+  // ));
+  
   return (
     <>
       <div>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</div>
@@ -35,7 +45,9 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
                   <br />
                 </>
               ))}
-                <br />
+              <button onClick={() => handleDetails(w)}>Details</button>
+              <br />
+              
             </div>
           ))}
           {/* {playlists.myPlaylists.map(p => (
@@ -45,7 +57,6 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       ) : (
         <div></div>
       )}
-
       {/* <Link to="/home">
         <button>Create Playlist</button>
       </Link> */}
