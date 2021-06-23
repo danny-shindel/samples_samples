@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine }) {
+
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, userWines, setUserWines, setWine }) {
   const [userWines, setUserWines] = useState([])
   const history = useHistory();
   
@@ -10,12 +11,11 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       const userPlaylists = await playlistAPI.getUserPlaylists();
       setPlaylists(userPlaylists);
     }
-    const userWines1 = allWines.filter(w => (
-    w.playlists.some(p => p.user == user._id)
-    ));
-    setUserWines(userWines1)
+    setUserWines(allWines.filter(w => (
+      w.playlists.some(p => p.user == user._id)
+    )))
     getPlaylists();
-  }, []);
+  }, [ allWines ]);
 
   function handleDetails(wine) {
     setWine(wine);
@@ -46,8 +46,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
                 </>
               ))}
               <button onClick={() => handleDetails(w)}>Details</button>
-              <br />
-              
+               <hr/>
             </div>
           ))}
           {/* {playlists.myPlaylists.map(p => (

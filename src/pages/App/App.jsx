@@ -20,6 +20,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [wine, setWine] = useState(null);
   const [wineTitles, setWineTitles] = useState([]);
+  const [userWines, setUserWines] = useState([])
 
   useEffect(function() {
     async function getWines() {
@@ -58,7 +59,7 @@ export default function App() {
               />
             </Route>
             <Route path="/create">
-              <CreatePage wine={wine} setWine={setWine} setMyPlaylistPage={setMyPlaylistPage} />
+              <CreatePage wine={wine} setAllWines={setAllWines}/>
             </Route>
             <Route path="/playlist">
               <PlaylistPage />
