@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
 
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, userWines, setUserWines, setWine }) {
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine }) {
   const [userWines, setUserWines] = useState([])
+  const [savedWines, setSavedWines] = useState([])
   const history = useHistory();
   
   useEffect(function(){
@@ -12,28 +13,34 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       setPlaylists(userPlaylists);
     }
     setUserWines(allWines.filter(w => (
-      w.playlists.some(p => p.user == user._id)
+      w.playlists.some(p => p.user === user._id)
+    )))
+    setSavedWines(allWines.filter(w => (
+      w.playlists.some(p => p.saved.some(u => u === user._id))
     )))
     getPlaylists();
   }, [ allWines ]);
 
   function handleDetails(wine) {
-    setWine(wine);
+    let wineCopy = {...wine}
+    
+    wineCopy.playlists = wineCopy.playlists.filter(p => 
+      (myPlaylistPage ? 
+      p.user === user._id
+      :
+      p.saved.some(u => u === user._id)
+      ))
+    setWine(wineCopy);
     history.push("/results");
   }
-  
-  // const userWines = allWines.filter(w => (
-  //   w.playlists.some(p => p.user == user._id)
-  // ));
   
   return (
     <>
       <div>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</div>
       <h1>IndexPage</h1>
       <br />
-      {myPlaylistPage ? (
-        <div>
-          {userWines.map(w => (
+      {<div>
+          {(myPlaylistPage ? userWines : savedWines).map(w => (
             <div>
               <h1>Wine Title</h1>
               <h1>{w.title}</h1>
@@ -49,13 +56,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
                <hr/>
             </div>
           ))}
-          {/* {playlists.myPlaylists.map(p => (
-            <p>{p.title}</p>
-          ))} */}
-        </div>
-      ) : (
-        <div></div>
-      )}
+        </div>}
       {/* <Link to="/home">
         <button>Create Playlist</button>
       </Link> */}
