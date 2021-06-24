@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     searchAPI,
-    create, 
+    create,
     getUserPlaylists
 };
 
@@ -19,12 +19,12 @@ async function searchAPI(req, res) {
     res.json(results.data)
 };
 
-async function create(req,res){
-    const newPlaylist = await Playlist.create({...req.body, user: req.user._id});
+async function create(req, res) {
+    const newPlaylist = await Playlist.create({ ...req.body, user: req.user._id });
     res.json(newPlaylist);
 };
 
-async function getUserPlaylists(req,res){
+async function getUserPlaylists(req, res) {
     const userPlaylists = await Playlist.getUserPlaylists(req.user._id);
     res.json(userPlaylists);
 };

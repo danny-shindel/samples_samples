@@ -15,7 +15,7 @@ const wineSchema = new Schema({
   province: String,
   country: String,
   winery: String,
-  playlists: [{type: Schema.Types.ObjectId, ref: 'Playlist'}]
+  playlists: [{ type: Schema.Types.ObjectId, ref: 'Playlist' }]
 });
 
 module.exports = mongoose.model('Wine', wineSchema);
