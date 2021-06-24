@@ -22,12 +22,12 @@ export default function App() {
   const [wineTitles, setWineTitles] = useState([]);
   const [userWines, setUserWines] = useState([])
 
-  useEffect(function() {
+  useEffect(function () {
     async function getWines() {
       const wines = await winesAPI.getAll();
       setAllWines(wines);
       setWineTitles(wines.map(w => {
-        return {title: w.title};
+        return { title: w.title };
       }));
     }
     getWines();
@@ -36,7 +36,7 @@ export default function App() {
   return (
     <main className="App">
       <NavBar user={user} setUser={setUser} setMyPlaylistPage={setMyPlaylistPage} />
-      { user ? 
+      {user ?
         <>
           <Switch>
             <Route path="/results">
@@ -49,7 +49,7 @@ export default function App() {
               <HomePage setWine={setWine} wineTitles={wineTitles} />
             </Route>
             <Route path="/index">
-              <IndexPage 
+              <IndexPage
                 user={user}
                 myPlaylistPage={myPlaylistPage}
                 playlists={playlists}
@@ -59,12 +59,12 @@ export default function App() {
               />
             </Route>
             <Route path="/create">
-              <CreatePage wine={wine} setAllWines={setAllWines}/>
+              <CreatePage wine={wine} setAllWines={setAllWines} />
             </Route>
             <Route path="/playlist">
               <PlaylistPage />
             </Route>
-            <Redirect to={click ? click===1 ? '/results' : '/create' : "/home"} />
+            <Redirect to={click ? click === 1 ? '/results' : '/create' : "/home"} />
           </Switch>
         </>
         :

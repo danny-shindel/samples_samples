@@ -10,7 +10,7 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
 
   return (
     <nav>
-      { user ?
+      {user ?
         <>
           <Link to="/home">Search</Link>
           &nbsp; | &nbsp;

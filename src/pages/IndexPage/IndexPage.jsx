@@ -6,9 +6,9 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
   const [userWines, setUserWines] = useState([])
   const [savedWines, setSavedWines] = useState([])
   const history = useHistory();
-  
-  useEffect(function(){
-    async function getPlaylists(){
+
+  useEffect(function () {
+    async function getPlaylists() {
       const userPlaylists = await playlistAPI.getUserPlaylists();
       setPlaylists(userPlaylists);
     }
@@ -19,44 +19,44 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       w.playlists.some(p => p.saved.some(u => u === user._id))
     )))
     getPlaylists();
-  }, [ allWines ]);
+  }, [allWines]);
 
   function handleDetails(wine) {
-    let wineCopy = {...wine}
-    
-    wineCopy.playlists = wineCopy.playlists.filter(p => 
-      (myPlaylistPage ? 
+    let wineCopy = { ...wine }
+
+    wineCopy.playlists = wineCopy.playlists.filter(p =>
+    (myPlaylistPage ?
       p.user === user._id
       :
       p.saved.some(u => u === user._id)
-      ))
+    ))
     setWine(wineCopy);
     history.push("/results");
   }
-  
+
   return (
     <>
       <div>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</div>
       <h1>IndexPage</h1>
       <br />
       {<div>
-          {(myPlaylistPage ? userWines : savedWines).map(w => (
-            <div>
-              <h1>Wine Title</h1>
-              <h1>{w.title}</h1>
-              <br />
-              {w.playlists.map(p => (
-                <>
-                  <h1>playlist Title</h1>
-                  <h1>{p.title}</h1>
-                  <br />
-                </>
-              ))}
-              <button onClick={() => handleDetails(w)}>Details</button>
-               <hr/>
-            </div>
-          ))}
-        </div>}
+        {(myPlaylistPage ? userWines : savedWines).map(w => (
+          <div>
+            <h1>Wine Title</h1>
+            <h1>{w.title}</h1>
+            <br />
+            {w.playlists.map(p => (
+              <>
+                <h1>playlist Title</h1>
+                <h1>{p.title}</h1>
+                <br />
+              </>
+            ))}
+            <button onClick={() => handleDetails(w)}>Details</button>
+            <hr />
+          </div>
+        ))}
+      </div>}
       {/* <Link to="/home">
         <button>Create Playlist</button>
       </Link> */}

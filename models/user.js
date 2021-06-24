@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 6;
 
 const userSchema = new Schema({
-  name: {type: String, required: true},
+  name: { type: String, required: true },
   email: {
     type: String,
     unique: true,
@@ -22,18 +22,18 @@ const userSchema = new Schema({
 }, {
   timestamps: true,
   toJSON: {
-    transform: function(doc, ret) {
+    transform: function (doc, ret) {
       delete ret.password;
       return ret;
     }
   }
 });
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   const user = this;
   if (!user.isModified('password')) return next();
   // password has changed - salt and hash it
-  bcrypt.hash(user.password, SALT_ROUNDS, function(err, hash) {
+  bcrypt.hash(user.password, SALT_ROUNDS, function (err, hash) {
     if (err) return next(err);
     // Update the password property with the hash
     user.password = hash;

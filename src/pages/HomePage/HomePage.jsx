@@ -9,9 +9,9 @@ export default function HomePage({ setWine, wineTitles }) {
   // state for autocomplete feature
   const [display, setDisplay] = useState(false);
 
-  
+
   function handleChange(evt) {
-    setSearch({[evt.target.name]: evt.target.value});
+    setSearch({ [evt.target.name]: evt.target.value });
     evt.target.value.length ? setDisplay(true) : setDisplay(false);
   }
 
@@ -37,35 +37,35 @@ export default function HomePage({ setWine, wineTitles }) {
       <h1>HOMEPAGE</h1>
       <div className="dropdown is-active">
         <div className="dropdown-trigger">
-          <input 
-          type="text" 
-          name="title" 
-          onChange={handleChange} 
-          value={search.title} 
-          required
-          autocomplete="off"
+          <input
+            type="text"
+            name="title"
+            onChange={handleChange}
+            value={search.title}
+            required
+            autocomplete="off"
           />
         </div>
         <div className="dropdown-menu" style={{ overflowY: 'hidden' }}>
-          { display && (
+          {display && (
             <div className="dropdown-content" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '60vh' }}>
-              { wineTitles
+              {wineTitles
                 .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
                 .map((wine, idx) => {
-                    return(
-                      <div key={idx}>
-                        <div className="dropdown-item" onClick={() => setSearchedWine(wine)} tabIndex="0">{ wine.title }</div>
-                        <hr className="dropdown-divider" />
-                      </div>
-                    )
-                  }) 
-                }
+                  return (
+                    <div key={idx}>
+                      <div className="dropdown-item" onClick={() => setSearchedWine(wine)} tabIndex="0">{wine.title}</div>
+                      <hr className="dropdown-divider" />
+                    </div>
+                  )
+                })
+              }
             </div>
-                ) }
+          )}
         </div>
       </div>
       <button onClick={handleSubmit}> Submit </button>
-      <br/>
+      <br />
       <Link to="/results">
         <button>TEST</button>
       </Link>
