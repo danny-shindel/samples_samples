@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api'
 import * as wineAPI from '../../utilities/wines-api'
 
-export default function CreatePage({ wine, setAllWines, playlist, setPlaylist }) {
+export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, setEdit }) {
   const history = useHistory();
   const [searchAPI, setSearchAPI] = useState('')
   const [resultsAPI, setResultsAPI] = useState(null)
@@ -40,8 +40,20 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist })
     history.push('/index');
   }
 
-  async function handleUpdatePlaylist(playlist) {
-    
+  async function handleUpdatePlaylist() {
+    const updatedPlaylist = await playlistAPI.update(playlist);
+    const wines = await wineAPI.getAll();
+    setEdit(false)
+    setAllWines(wines)
+    history.push('/index');
+  }
+
+  async function handleDeletePlaylist() {
+    const deletePlaylist = await playlistAPI.deletePlaylist(playlist._id);
+    const wines = await wineAPI.getAll();
+    setEdit(false)
+    setAllWines(wines)
+    history.push('/index');
   }
 
   return (
@@ -69,7 +81,8 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist })
           </>
         )}
       </div>
-      <button onClick={playlist._id ? () => handleUpdatePlaylist(playlist) : handleSavePlaylist}>SAVE PLAYLIST</button>
+      <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "EDIT" : "SAVE" }</button>
+      {playlist._id && <button onClick={handleDeletePlaylist}>DELETE</button>}
     </>
   )
 }

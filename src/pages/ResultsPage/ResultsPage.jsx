@@ -1,7 +1,7 @@
 import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
 
-export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistPage, setPlaylist }) {
+export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistPage, setPlaylist, setEdit }) {
   const history = useHistory();
 
   function handleClick() {
@@ -23,8 +23,18 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
   }
 
   async function editPlaylist(playlist) {
+    setEdit(true);
     setPlaylist(playlist);
     history.push('/create');
+  }
+
+  function handleCreateClick() {
+    setPlaylist({
+      title: "",
+      about: "",
+      songs: []
+    });
+    setEdit(false)
   }
 
   return (
@@ -57,7 +67,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
       <h1>ResultsPage</h1>
       {user ?
         <>
-          <Link to='/create'><button>CreatePlaylist</button></Link>
+          <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
         </>
         :
         <>

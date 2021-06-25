@@ -10,7 +10,7 @@ router.post('/searchAPI', playlistsCtrl.searchAPI);
 router.post('/create', playlistsCtrl.create);
 // GET /api/playlists/userPlaylist
 router.get('/userPlaylists', playlistsCtrl.getUserPlaylists);
-
-
+router.put('/update', playlistsCtrl.update);
+router.delete('/delete/:id', playlistsCtrl.deletePlaylist);
 
 module.exports = router;
