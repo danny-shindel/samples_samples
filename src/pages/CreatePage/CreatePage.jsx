@@ -3,13 +3,8 @@ import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api'
 import * as wineAPI from '../../utilities/wines-api'
 
-export default function CreatePage({ wine, setAllWines }) {
+export default function CreatePage({ wine, setAllWines, playlist, setPlaylist }) {
   const history = useHistory();
-  const [playlist, setPlaylist] = useState({
-    title: "",
-    about: "",
-    songs: []
-  })
   const [searchAPI, setSearchAPI] = useState('')
   const [resultsAPI, setResultsAPI] = useState(null)
 
@@ -45,14 +40,16 @@ export default function CreatePage({ wine, setAllWines }) {
     history.push('/index');
   }
 
-
+  async function handleUpdatePlaylist(playlist) {
+    
+  }
 
   return (
     <>
       <h1>Create Playlist</h1>
-      <input placeholder="title" name="title" onChange={handleChange}></input>
+      <input placeholder="title" name="title" onChange={handleChange} value={playlist.title}></input>
       <br />
-      <textarea onChange={handleChange} name="about"></textarea>
+      <textarea onChange={handleChange} name="about"  value={playlist.about}></textarea>
       <br />
       <input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
       <button onClick={handleAPIClick}>search song</button>
@@ -72,7 +69,7 @@ export default function CreatePage({ wine, setAllWines }) {
           </>
         )}
       </div>
-      <button onClick={handleSavePlaylist}>SAVE PLAYLIST</button>
+      <button onClick={playlist._id ? () => handleUpdatePlaylist(playlist) : handleSavePlaylist}>SAVE PLAYLIST</button>
     </>
   )
 }

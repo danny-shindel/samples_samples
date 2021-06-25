@@ -1,7 +1,7 @@
 import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
 
-export default function ResultsPage({ user, setClick, wine, setWine }) {
+export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistPage, setPlaylist }) {
   const history = useHistory();
 
   function handleClick() {
@@ -22,26 +22,34 @@ export default function ResultsPage({ user, setClick, wine, setWine }) {
     }
   }
 
+  async function editPlaylist(playlist) {
+    setPlaylist(playlist);
+    history.push('/create');
+  }
+
   return (
     <div>
       <div>{wine && wine.title}</div>
       {wine.playlists.map(playlist => (
         <>
-          <div>User:</div>
-          <div>{playlist.user.name}</div>
-          <div>Title:</div>
-          <div>{playlist.title}</div>
-          <div>About:</div>
-          <p>{playlist.about}</p>
+          <div>User: {playlist.user.name}</div>
+          <div>Title: {playlist.title}</div>
+          <div>About: {playlist.about || "nothing here mate"}</div>
           <div>Songs:</div>
           {playlist.songs.map(song => (
             <>
-              <p>{song.title} - {song.artist.name}</p>
+              <h3>{song.title} - {song.artist.name}</h3>
             </>
           ))}
-          <button onClick={() => savePlaylist(playlist._id)}>
-            {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
-          </button>
+          {myPlaylistPage ?
+            <button onClick={() => editPlaylist(playlist)}>
+              Edit
+            </button>
+            :
+            <button onClick={() => savePlaylist(playlist._id)}>
+              {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
+            </button>
+          }
           <hr />
         </>
       ))}

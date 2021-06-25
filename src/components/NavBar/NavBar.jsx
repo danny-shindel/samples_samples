@@ -12,7 +12,7 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
     <nav>
       {user ?
         <>
-          <Link to="/home">Search</Link>
+          <Link to="/home" onClick={() => setMyPlaylistPage(false)}>Search</Link>
           &nbsp; | &nbsp;
           <Link to="/index" onClick={() => setMyPlaylistPage(true)}>My Playlists</Link>
           &nbsp; | &nbsp;
