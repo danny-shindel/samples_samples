@@ -1,6 +1,7 @@
 import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
 
+
 export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistPage, setPlaylist, setEdit }) {
   const history = useHistory();
 
@@ -38,31 +39,37 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
   }
 
   return (
-    <div>
-      <div>{wine && wine.title}</div>
-      {wine.playlists.map(playlist => (
-        <>
-          <div>User: {playlist.user.name}</div>
-          <div>Title: {playlist.title}</div>
-          <div>About: {playlist.about || "nothing here mate"}</div>
-          <div>Songs:</div>
-          {playlist.songs.map(song => (
-            <>
-              <h3>{song.title} - {song.artist.name}</h3>
-            </>
-          ))}
-          {myPlaylistPage ?
-            <button onClick={() => editPlaylist(playlist)}>
-              Edit
-            </button>
-            :
-            <button onClick={() => savePlaylist(playlist._id)}>
-              {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
-            </button>
-          }
-          <hr />
-        </>
-      ))}
+    <div className="columns">
+      <div className="column is-5">
+        <p>
+          {wine && wine.title}
+        </p>
+      </div>
+      <div className="column is-7">
+        {wine.playlists.map(playlist => (
+          <>
+            <div>User: {playlist.user.name}</div>
+            <div>Title: {playlist.title}</div>
+            <div>About: {playlist.about || "nothing here mate"}</div>
+            <div>Songs:</div>
+            {playlist.songs.map(song => (
+              <>
+                <h3>{song.title} - {song.artist.name}</h3>
+              </>
+            ))}
+            {myPlaylistPage ?
+              <button className="button" onClick={() => editPlaylist(playlist)}>
+                Edit
+              </button>
+              :
+              <button onClick={() => savePlaylist(playlist._id)}>
+                {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
+              </button>
+            }
+            <hr />
+          </>
+        ))}
+      </div>
 
       <h1>ResultsPage</h1>
       {user ?
