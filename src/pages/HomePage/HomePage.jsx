@@ -1,6 +1,7 @@
 import { Link, useHistory } from "react-router-dom"
 import { useState } from 'react';
 import * as winesAPI from "../../utilities/wines-api";
+import './HomePage.css';
 
 
 export default function HomePage({ setWine, wineTitles }) {
@@ -12,7 +13,7 @@ export default function HomePage({ setWine, wineTitles }) {
 
   function handleChange(evt) {
     setSearch({ [evt.target.name]: evt.target.value });
-    evt.target.value.length ? setDisplay(true) : setDisplay(false);
+    evt.target.value.length > 2 ? setDisplay(true) : setDisplay(false);
   }
 
   async function handleSubmit() {
@@ -33,11 +34,12 @@ export default function HomePage({ setWine, wineTitles }) {
   }
 
   return (
-    <>
-      <h1>HOMEPAGE</h1>
+    <div className="homepage">
+      <h1 className="is-size-1">Search a Wine!</h1>
       <div className="dropdown is-active">
         <div className="dropdown-trigger">
           <input
+            className="input"
             type="text"
             name="title"
             onChange={handleChange}
@@ -48,7 +50,7 @@ export default function HomePage({ setWine, wineTitles }) {
         </div>
         <div className="dropdown-menu" style={{ overflowY: 'hidden' }}>
           {display && (
-            <div className="dropdown-content" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '60vh' }}>
+            <div className="dropdown-content" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
               {wineTitles
                 .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
                 .map((wine, idx) => {
@@ -64,11 +66,7 @@ export default function HomePage({ setWine, wineTitles }) {
           )}
         </div>
       </div>
-      <button onClick={handleSubmit}> Submit </button>
-      <br />
-      <Link to="/results">
-        <button>TEST</button>
-      </Link>
-    </>
+      <button className="button" onClick={handleSubmit}> Submit </button>
+    </div>
   );
 }
