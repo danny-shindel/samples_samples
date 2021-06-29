@@ -13,7 +13,7 @@ export default function HomePage({ setWine, wineTitles }) {
 
   function handleChange(evt) {
     setSearch({ [evt.target.name]: evt.target.value });
-    evt.target.value.length > 2 ? setDisplay(true) : setDisplay(false);
+    evt.target.value.length ? setDisplay(true) : setDisplay(false);
   }
 
   async function handleSubmit() {
@@ -53,6 +53,7 @@ export default function HomePage({ setWine, wineTitles }) {
             <div className="dropdown-content" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
               {wineTitles
                 .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
+                .slice(0, 20)
                 .map((wine, idx) => {
                   return (
                     <div key={idx}>
