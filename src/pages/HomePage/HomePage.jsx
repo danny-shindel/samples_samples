@@ -21,6 +21,7 @@ export default function HomePage({ setWine, wineTitles }) {
     // If there is a wine of that name, then go to results page
     if (wine) {
       setWine(wine);
+      localStorage.setItem('wine', JSON.stringify(wine));
       history.push('/results');
     } else {
       // inform user there is no wine by that name
