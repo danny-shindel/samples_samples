@@ -28,6 +28,7 @@ export default function App() {
   });
   const [edit, setEdit] = useState(false);
 
+
   useEffect(function () {
     async function getWines() {
       const wines = await winesAPI.getAll();
@@ -38,6 +39,12 @@ export default function App() {
     }
     getWines();
   }, []);
+
+  useEffect(function() {
+    if (wine) {
+      localStorage.setItem('wine', JSON.stringify(wine));
+    }
+  }, [wine])
 
   return (
     <main className="App">

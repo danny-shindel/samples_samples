@@ -1,6 +1,7 @@
+import { useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
-
+import "./ResultsPage.css";
 
 export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistPage, setPlaylist, setEdit }) {
   const history = useHistory();
@@ -8,6 +9,13 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
   function handleClick() {
 
   }
+
+  useEffect(function() {
+    if (!wine) {
+      setWine(JSON.parse(localStorage.getItem('wine')));
+      console.log("RIGHT HERE");
+    }
+  }, [])
 
   async function savePlaylist(playlistId) {
     if (user) {
@@ -38,7 +46,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
     setEdit(false)
   }
 
-  return (
+    return (
     <div className="columns">
       <div className="column is-5">
         <p>
@@ -46,7 +54,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
         </p>
       </div>
       <div className="column is-7">
-        {wine.playlists.map(playlist => (
+        {wine && wine.playlists.map(playlist => (
           <>
             <div>User: {playlist.user.name}</div>
             <div>Title: {playlist.title}</div>
@@ -69,18 +77,17 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
             <hr />
           </>
         ))}
+        <h1>ResultsPage</h1>
+        {user ?
+          <>
+            <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
+          </>
+          :
+          <>
+            <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
+          </>
+        }
       </div>
-
-      <h1>ResultsPage</h1>
-      {user ?
-        <>
-          <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
-        </>
-        :
-        <>
-          <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
-        </>
-      }
     </div>
   )
 }
