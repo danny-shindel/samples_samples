@@ -85,7 +85,7 @@ export default function App() {
         <>
           <Switch>
             <Route path="/results">
-              <ResultsPage setClick={setClick} wine={wine} />
+              <ResultsPage setClick={setClick} wine={wine} setWine={setWine}/>
             </Route>
             <Route path="/home">
               <HomePage setWine={setWine} wineTitles={wineTitles} />

@@ -1,0 +1,49 @@
+.is-5 {
+    padding-left: 30vmin;
+}
+
+.playlist-holder {
+    background-color: green;
+    width: 75vmin;
+    margin-bottom: 2vmin;
+}
+
+.playlist-info {
+    background-color: yellow;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "profile title button"
+    "profile user button"
+    ;
+    height: 8vmin;
+}
+
+.playlist-profile {
+    grid-area: profile;
+    background-color: blue;
+    border-radius: 50%;
+    margin: 1vmin 2vmin;
+}
+.playlist-title {
+    grid-area: title;
+    text-align: start;
+}
+.playlist-user {
+    grid-area: user;
+    text-align: start;
+}
+.playlist-button {
+    grid-area: button;
+}
+
+.button {
+    height: 3vmin;
+}
+
+.song-holder {
+    max-height: 20vmin;
+    overflow-y: scroll;
+    padding: 1vmin 0;
+}
