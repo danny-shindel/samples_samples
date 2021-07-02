@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api'
 import * as wineAPI from '../../utilities/wines-api'
+import "./CreatePage.css";
 
 export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, setEdit }) {
   const history = useHistory();
@@ -58,14 +59,23 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, s
 
   return (
     <>
-      <h1>Create Playlist</h1>
-      <input placeholder="title" name="title" onChange={handleChange} value={playlist.title}></input>
-      <br />
-      <textarea onChange={handleChange} name="about"  value={playlist.about}></textarea>
-      <br />
-      <input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
-      <button onClick={handleAPIClick}>search song</button>
-      <div>
+    <div className="columns">
+        <div className="column is-5">
+            <img src="https://i.imgur.com/8upb3GM.png"></img>
+      </div>
+      <div className="column is-7">
+          <div className="is-pulled-left">
+        <input placeholder="title" name="title" onChange={handleChange} value={playlist.title}></input>
+        </div>
+          <div className="is-pulled-left">
+        <textarea className="is-pulled-left" onChange={handleChange} name="about" value={playlist.about}></textarea>
+        </div>
+      </div>
+    </div>
+    <div className="columns">
+      <div className="column is-6">
+        <div><input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
+          <button onClick={handleAPIClick}>search song</button></div>
         {resultsAPI && resultsAPI.map((result, idx) =>
           <>
             <div>{result.title} {result.artist.name}</div>
@@ -73,7 +83,7 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, s
           </>
         )}
       </div>
-      <div>
+      <div className="column is-6">
         {(playlist.songs.length > 0) && playlist.songs.map((song, idx) =>
           <>
             <div>{song.title} {song.artist.name}</div>
@@ -83,6 +93,7 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, s
       </div>
       <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "EDIT" : "SAVE" }</button>
       {playlist._id && <button onClick={handleDeletePlaylist}>DELETE</button>}
-    </>
+    </div>
+  </>
   )
 }

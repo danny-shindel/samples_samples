@@ -48,45 +48,55 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
 
     return (
     <div className="columns">
+
+
       <div className="column is-5">
+        <img src="https://i.imgur.com/8upb3GM.png" alt="wine bottle"></img>
         <p>
           {wine && wine.title}
         </p>
+          {user ?
+            <>
+              <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
+            </>
+            :
+            <>
+              <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
+            </>
+          }
       </div>
+
+
       <div className="column is-7">
         {wine && wine.playlists.map(playlist => (
           <>
-            <div>User: {playlist.user.name}</div>
-            <div>Title: {playlist.title}</div>
-            <div>About: {playlist.about || "nothing here mate"}</div>
-            <div>Songs:</div>
-            {playlist.songs.map(song => (
-              <>
-                <h3>{song.title} - {song.artist.name}</h3>
-              </>
-            ))}
-            {myPlaylistPage ?
-              <button className="button" onClick={() => editPlaylist(playlist)}>
-                Edit
-              </button>
-              :
-              <button onClick={() => savePlaylist(playlist._id)}>
-                {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
-              </button>
-            }
-            <hr />
+          <div className="playlist-holder">
+              <div className="playlist-info">
+                <div className="playlist-profile"></div>
+                <div className="playlist-title">Title: {playlist.title}</div>
+                <div className="playlist-user">User: {playlist.user.name} 240 Downloads</div>
+                {myPlaylistPage ?
+                  <button className="button playlist-button" onClick={() => editPlaylist(playlist)}>
+                    Edit
+                  </button>
+                  :
+                  <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
+                    {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
+                  </button>
+                }
+              </div>
+              <div className="playlist-songs">
+                <div className="song-holder">
+                  {playlist.songs.map(song => (
+                    <>
+                      <h3>{song.title} - {song.artist.name}</h3>
+                    </>
+                  ))}
+                </div>
+              </div>
+          </div>
           </>
         ))}
-        <h1>ResultsPage</h1>
-        {user ?
-          <>
-            <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
-          </>
-          :
-          <>
-            <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
-          </>
-        }
       </div>
     </div>
   )

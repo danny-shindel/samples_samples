@@ -5,3 +5,7 @@
 .navbar-end {
   /* margin: 0 auto; */
 }
+
+.navbar {
+  margin-bottom: 10vmin;
+}
