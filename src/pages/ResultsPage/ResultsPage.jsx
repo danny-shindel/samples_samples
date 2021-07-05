@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
 import "./ResultsPage.css";
@@ -10,7 +10,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
 
   }
 
-  useEffect(function() {
+  useEffect(function () {
     if (!wine) {
       setWine(JSON.parse(localStorage.getItem('wine')));
       console.log("RIGHT HERE");
@@ -46,7 +46,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
     setEdit(false)
   }
 
-    return (
+  return (
     <div className="columns">
 
 
@@ -55,22 +55,22 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
         <p>
           {wine && wine.title}
         </p>
-          {user ?
-            <>
-              <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
-            </>
-            :
-            <>
-              <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
-            </>
-          }
+        {user ?
+          <>
+            <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
+          </>
+          :
+          <>
+            <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
+          </>
+        }
       </div>
 
 
       <div className="column is-7">
         {wine && wine.playlists.map(playlist => (
           <>
-          <div className="playlist-holder">
+            <div className="playlist-holder">
               <div className="playlist-info">
                 <div className="playlist-profile"></div>
                 <div className="playlist-title">Title: {playlist.title}</div>
@@ -94,7 +94,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
                   ))}
                 </div>
               </div>
-          </div>
+            </div>
           </>
         ))}
       </div>

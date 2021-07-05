@@ -35,20 +35,20 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
               </p>
             </Link>
             <p className="navbar-item">Welcome {user.name} </p>
-              <div 
-                onClick={() => {
-                  setIsActive(!isActive);
-                }}
-                role="button" 
-                className={`navbar-burger burger ${isActive ? 'is-active' : ''}`} 
-                aria-label="menu" 
-                aria-expanded="false" 
-                data-target="navbarBasicExample"
-              >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </div>
+            <div
+              onClick={() => {
+                setIsActive(!isActive);
+              }}
+              role="button"
+              className={`navbar-burger burger ${isActive ? 'is-active' : ''}`}
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="navbarBasicExample"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </div>
           </div>
           <div className={`navbar-menu ${isActive ? 'is-active' : ''}`} id="navbarBasicExample">
             <div className="navbar-end">
