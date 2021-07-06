@@ -6,20 +6,21 @@ import "./CreatePage.css";
 
 export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, setEdit }) {
   const history = useHistory();
-  const [searchAPI, setSearchAPI] = useState('')
-  const [resultsAPI, setResultsAPI] = useState(null)
+  const [searchAPI, setSearchAPI] = useState('');
+  const [resultsAPI, setResultsAPI] = useState(null);
 
   function handleChange(evt) {
-    setPlaylist({ ...playlist, [evt.target.name]: evt.target.value })
+    setPlaylist({ ...playlist, [evt.target.name]: evt.target.value });
   }
 
   function handleAPIChange(evt) {
-    setSearchAPI(evt.target.value)
+    setSearchAPI(evt.target.value);
   }
 
   async function handleAPIClick() {
-    const results = await playlistAPI.searchAPI({ searchAPI })
-    setResultsAPI(results)
+    if (!searchAPI.length) return;
+    const results = await playlistAPI.searchAPI({ searchAPI });
+    setResultsAPI(results);
   }
 
   function addToPlaylist(result) {
@@ -37,63 +38,71 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, s
   async function handleSavePlaylist() {
     const newPlaylist = await playlistAPI.create(playlist);
     const wines = await wineAPI.addPlaylist(wine, newPlaylist);
-    setAllWines(wines)
+    setAllWines(wines);
     history.push('/index');
   }
 
   async function handleUpdatePlaylist() {
     const updatedPlaylist = await playlistAPI.update(playlist);
     const wines = await wineAPI.getAll();
-    setEdit(false)
-    setAllWines(wines)
+    setEdit(false);
+    setAllWines(wines);
     history.push('/index');
   }
 
   async function handleDeletePlaylist() {
     const deletePlaylist = await playlistAPI.deletePlaylist(playlist._id);
     const wines = await wineAPI.getAll();
-    setEdit(false)
-    setAllWines(wines)
+    setEdit(false);
+    setAllWines(wines);
     history.push('/index');
   }
 
   return (
     <>
-    <div className="columns">
-        <div className="column is-5">
-            <img src="https://i.imgur.com/8upb3GM.png"></img>
-      </div>
-      <div className="column is-7">
-          <div className="is-pulled-left">
-        <input placeholder="title" name="title" onChange={handleChange} value={playlist.title}></input>
+      <div className="columns">
+        <div className="column is-half">
+          <div className="columns">
+            <div className="column"></div>
+            <div className="column is-half">
+              <img className="wine-img" src="https://i.imgur.com/8upb3GM.png"></img>
+            </div>
+            <div className="column"></div>
+          </div>
         </div>
-          <div className="is-pulled-left">
-        <textarea className="is-pulled-left" onChange={handleChange} name="about" value={playlist.about}></textarea>
+        <div className="playlist-info-div column is-half">
+          <input placeholder="title" name="title" onChange={handleChange} value={playlist.title}></input>
+          <textarea placeholder="description" onChange={handleChange} name="about" value={playlist.about}></textarea>
         </div>
       </div>
-    </div>
-    <div className="columns">
-      <div className="column is-6">
-        <div><input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
-          <button onClick={handleAPIClick}>search song</button></div>
-        {resultsAPI && resultsAPI.map((result, idx) =>
-          <>
-            <div>{result.title} {result.artist.name}</div>
-            <button onClick={() => addToPlaylist(result)}>ADD</button>
-          </>
-        )}
+      <div className="columns">
+        <div className="column">
+          <div>
+            <input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
+            <button onClick={handleAPIClick}>search song</button>
+          </div>
+          <div className="results">
+            {resultsAPI && resultsAPI.map((result, idx) =>
+              <div>
+                <div> {result.artist.name} - {result.title}</div>
+                <button onClick={() => addToPlaylist(result)}>ADD</button>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="column">
+          <div className="added-songs-div">
+            {(playlist.songs.length > 0) && playlist.songs.map((song, idx) =>
+              <div>
+                <div>{song.title} {song.artist.name}</div>
+                <button onClick={() => deleteFromPlaylist(idx)}>Delete</button>
+              </div>
+            )}
+          </div>
+          {(playlist.songs.length > 0) && <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "EDIT PLAYLIST" : "SAVE PLAYLIST"}</button>}
+          {playlist._id && <button onClick={handleDeletePlaylist}>DELETE PLAYLIST</button>}
+        </div>
       </div>
-      <div className="column is-6">
-        {(playlist.songs.length > 0) && playlist.songs.map((song, idx) =>
-          <>
-            <div>{song.title} {song.artist.name}</div>
-            <button onClick={() => deleteFromPlaylist(idx)}>Delete</button>
-          </>
-        )}
-      </div>
-      <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "EDIT" : "SAVE" }</button>
-      {playlist._id && <button onClick={handleDeletePlaylist}>DELETE</button>}
-    </div>
-  </>
+    </>
   )
 }

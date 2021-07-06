@@ -23,7 +23,6 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
 
   function handleDetails(wine) {
     let wineCopy = { ...wine }
-
     wineCopy.playlists = wineCopy.playlists.filter(p =>
     (myPlaylistPage ?
       p.user === user._id

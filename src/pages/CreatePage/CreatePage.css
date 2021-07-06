@@ -1,4 +1,34 @@
-.is-5 > img {
-    height: 30vmin;
+.wine-img {
+  max-height: 30vh;
 }
 
+.playlist-info-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.playlist-info-div > * {
+  height: 40%;
+  width: 90%;
+}
+
+.results, .added-songs-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.results > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%
+}
+
+.added-songs-div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}

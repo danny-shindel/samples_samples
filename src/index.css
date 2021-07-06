@@ -30,7 +30,7 @@ body {
   background-color: var(--tan-4);
 
   /* padding: 2vmin; */
-  height: 100vh;
+  height: 100vh; /* This needs to be addressed */
   width: 100vw;
 }
 
