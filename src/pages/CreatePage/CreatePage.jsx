@@ -105,7 +105,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
               </div>
             )}
           </div>
-          {(playlist.songs.length > 0) && <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "EDIT PLAYLIST" : "SAVE PLAYLIST"}</button>}
+          {(playlist.songs.length > 0) && <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "UPDATE PLAYLIST" : "SAVE PLAYLIST"}</button>}
           {playlist._id && <button onClick={handleDeletePlaylist}>DELETE PLAYLIST</button>}
         </div>
       </div>
