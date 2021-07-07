@@ -83,9 +83,11 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
                     Edit
                   </button>
                   :
-                  <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
-                    {playlist.saved.find(userId => userId === user._id) ? 'saved' : 'save playlist'}
-                  </button>
+                  <>
+                  { playlist.user._id !== user._id && <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
+                      {playlist.saved.find(userId => userId === user._id) ? 'unsave' : 'save'}
+                    </button>}
+                  </>
                 }
               </div>
               <div className="playlist-songs">
