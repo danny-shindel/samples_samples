@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api'
 import * as wineAPI from '../../utilities/wines-api'
 import "./CreatePage.css";
 
-export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, setEdit }) {
+export default function CreatePage({ wine, setWine, setAllWines, playlist, setPlaylist, setEdit }) {
   const history = useHistory();
   const [searchAPI, setSearchAPI] = useState('');
   const [resultsAPI, setResultsAPI] = useState(null);
 
+  useEffect(function () {
+    if (!wine) {
+      setWine(JSON.parse(localStorage.getItem('wine')));
+    }
+  }, [])
+  
   function handleChange(evt) {
     setPlaylist({ ...playlist, [evt.target.name]: evt.target.value });
   }
@@ -81,7 +87,7 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, s
             <input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
             <button onClick={handleAPIClick}>search song</button>
           </div>
-          <div className="results">
+          <div className="results" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
             {resultsAPI && resultsAPI.map((result, idx) =>
               <div>
                 <div> {result.artist.name} - {result.title}</div>
@@ -91,7 +97,7 @@ export default function CreatePage({ wine, setAllWines, playlist, setPlaylist, s
           </div>
         </div>
         <div className="column">
-          <div className="added-songs-div">
+          <div className="added-songs-div" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
             {(playlist.songs.length > 0) && playlist.songs.map((song, idx) =>
               <div>
                 <div>{song.title} {song.artist.name}</div>

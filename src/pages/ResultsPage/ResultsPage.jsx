@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
 import "./ResultsPage.css";
 
-export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistPage, setPlaylist, setEdit }) {
+export default function ResultsPage({ user, setClick, wine, setWine, allWines, setAllWines, myPlaylistPage, setPlaylist, setEdit }) {
   const history = useHistory();
 
   function handleClick() {
@@ -13,7 +13,6 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
   useEffect(function () {
     if (!wine) {
       setWine(JSON.parse(localStorage.getItem('wine')));
-      console.log("RIGHT HERE");
     }
   }, [])
 
@@ -23,6 +22,10 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
         'playlistId': playlistId
       }
       const updatedWine = await winesAPI.addSavedPlaylist(updateData, wine._id);
+      const allNewWines = [...allWines];
+      const wineIdx = allNewWines.findIndex(w => w._id === wine._id);
+      allNewWines.splice(wineIdx, 1, updatedWine);
+      setAllWines(allNewWines);
       setWine(updatedWine);
     } else {
       // routes back to results page
@@ -67,7 +70,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, myPlaylistP
       </div>
 
 
-      <div className="column is-7">
+      <div className="column is-7" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '90vh' }}>
         {wine && wine.playlists.map(playlist => (
           <>
             <div className="playlist-holder">
