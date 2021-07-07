@@ -4,7 +4,7 @@ import * as winesAPI from "../../utilities/wines-api";
 import './HomePage.css';
 
 
-export default function HomePage({ setWine, wineTitles }) {
+export default function HomePage({ setWine, wineTitles, setMyPlaylistPage }) {
   const [search, setSearch] = useState({ title: '' });
   const history = useHistory();
   // state for autocomplete feature
@@ -22,6 +22,7 @@ export default function HomePage({ setWine, wineTitles }) {
     if (wine) {
       setWine(wine);
       localStorage.setItem('wine', JSON.stringify(wine));
+      setMyPlaylistPage(false);
       history.push('/results');
     } else {
       // inform user there is no wine by that name

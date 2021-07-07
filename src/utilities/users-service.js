@@ -47,6 +47,7 @@ export function getUser() {
 
 export function logOut() {
   localStorage.removeItem('token');
+  localStorage.removeItem('wine');
 }
 
 

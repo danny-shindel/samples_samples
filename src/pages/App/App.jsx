@@ -60,7 +60,7 @@ export default function App() {
               <ResultsPage user={user} wine={wine} setWine={setWine} />
             </Route> */}
             <Route path="/home">
-              <HomePage setWine={setWine} wineTitles={wineTitles} />
+              <HomePage setWine={setWine} wineTitles={wineTitles} setMyPlaylistPage={setMyPlaylistPage} />
             </Route>
             <Route path="/index">
               <IndexPage
