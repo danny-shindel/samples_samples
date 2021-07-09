@@ -3,7 +3,11 @@ import sendRequest from './send-request';
 const BASE_URL = '/api/users';
 
 export function signUp(userData) {
-  return sendRequest(BASE_URL, 'POST', userData);
+  return sendRequest(BASE_URL, 'POST', userData, true);
+}
+
+export function signUpNoPic(userData) {
+  return sendRequest(`${BASE_URL}/signup`, 'POST', userData);
 }
 
 export function login(credentials) {

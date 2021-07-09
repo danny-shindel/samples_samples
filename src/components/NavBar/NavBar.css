@@ -2,10 +2,14 @@
   padding: 1vmin 2vmin 2vmin 2vmin!important;
 }
  
-.navbar-end {
-  /* margin: 0 auto; */
-}
+/* .navbar-end {
+  margin: 0 auto;
+} */
 
 .navbar {
   margin-bottom: 10vmin;
+}
+
+#nav-profile-pic {
+  max-height: 50px;
 }

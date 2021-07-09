@@ -75,7 +75,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
           <>
             <div className="playlist-holder">
               <div className="playlist-info">
-                <div className="playlist-profile"></div>
+                <img src={playlist.user.profilePic} className="playlist-profile" />
                 <div className="playlist-title">Title: {playlist.title}</div>
                 <div className="playlist-user">User: {playlist.user.name} 240 Downloads</div>
                 {myPlaylistPage ?

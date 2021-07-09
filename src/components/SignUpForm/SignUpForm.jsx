@@ -20,28 +20,54 @@ export default class SignUpForm extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      const formData = { ...this.state };
-      delete formData.error;
-      delete formData.confirm;
-      // The promise returned by the signUp service method
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
-      const user = await signUp(formData);
-      // baby step
-      this.props.setClick(this.props.click)
-      this.props.setUser(user);
+      // const formData = new FormData()
+      const fileField = document.querySelector("input[type='file']")
+      if (fileField.files[0]) {
+        const formData = new FormData()
+        formData.append("name",this.state.name)
+        formData.append("email",this.state.email)
+        formData.append("password",this.state.password)
+        formData.append("profile-pic",fileField.files[0])
+        const user = await signUp(formData);
+        this.props.setUser(user);
+      } else {
+        const formData = { ...this.state };
+        delete formData.error;
+        delete formData.confirm;
+        const user = await signUp(formData);
+        this.props.setUser(user);
+      }
     } catch {
       // An error occurred
-      this.setState({ error: 'Sign Up Failed - Try Again' });
+      this.setState({ error: 'Sign Up Failed - Try Again'});
     }
   };
+
+  // handleSubmit = async (evt) => {
+  //   evt.preventDefault();
+  //   try {
+  //     const formData = { ...this.state };
+  //     delete formData.error;
+  //     delete formData.confirm;
+  //     // The promise returned by the signUp service method
+  //     // will resolve to the user object included in the
+  //     // payload of the JSON Web Token (JWT)
+  //     const user = await signUp(formData);
+  //     // baby step
+  //     this.props.setClick(this.props.click)
+  //     this.props.setUser(user);
+  //   } catch {
+  //     // An error occurred
+  //     this.setState({ error: 'Sign Up Failed - Try Again' });
+  //   }
+  // };
 
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
       <div>
         <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
+          <form autoComplete="off" onSubmit={this.handleSubmit} encType="multipart/form-data">
             <label>Name</label>
             <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
             <label>Email</label>
@@ -50,6 +76,8 @@ export default class SignUpForm extends Component {
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
             <label>Confirm</label>
             <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+            <label>Profile Pic</label>
+            <input type="file" name="profile-pic" />
             <button type="submit" disabled={disable}>SIGN UP</button>
           </form>
         </div>
