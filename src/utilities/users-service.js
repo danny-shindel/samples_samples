@@ -4,9 +4,14 @@ export async function signUp(userData) {
   try {
     // usersAPI.signUp will resolve to the token sent back
     // from the server
-    const token = await usersAPI.signUp(userData);
+    const token = userData.name ?
+      await usersAPI.signUpNoPic(userData)
+      :
+      await usersAPI.signUp(userData);
     localStorage.setItem('token', token);
     return getUser();
+    // localStorage.setItem('token', token);
+    // return getUser();
   } catch {
     throw new Error('Invalid Sign Up');
   }

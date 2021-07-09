@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 module.exports = {
   create,
   login,
-  checkToken
+  checkToken,
+  createNoPic
 };
 
 function checkToken(req, res) {
@@ -15,7 +16,7 @@ function checkToken(req, res) {
   res.json(req.exp);
 }
 
-async function create(req, res) {
+async function createNoPic(req, res) {
   try {
     const user = await User.create(req.body);
     const token = createJWT(user);
@@ -27,6 +28,22 @@ async function create(req, res) {
     res.status(400).json(err);
   }
 }
+
+
+
+async function create(req, res) {
+  try {
+    const url = await User.savePhoto(req)
+    const newObj = {...req.body}
+    const user = await User.create({...newObj, profilePic: url});
+    const token = createJWT(user);
+    res.json(token);
+  } catch(err) {
+    res.status(400).json(err);
+  }
+}
+
+
 
 async function login(req, res) {
   try {

@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const upload = require('multer')();
 
 require('dotenv').config();
 require('./config/database');
@@ -19,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(require('./config/checkToken'));
 
 // Put API routes here, before the "catch all" route
-app.use('/api/users', require('./routes/api/users'));
+app.use('/api/users', upload.single('profile-pic'), require('./routes/api/users'));
 app.use('/api/wines', require('./routes/api/wines'));
 app.use('/api/playlists', require('./routes/api/playlists'));
 

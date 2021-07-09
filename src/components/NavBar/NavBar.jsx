@@ -34,6 +34,7 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
                 </span>
               </p>
             </Link>
+            <img id="nav-profile-pic" src={user.profilePic} />
             <p className="navbar-item">Welcome {user.name} </p>
             <div
               onClick={() => {
