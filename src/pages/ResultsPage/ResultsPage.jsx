@@ -14,6 +14,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
     if (!wine) {
       setWine(JSON.parse(localStorage.getItem('wine')));
     }
+    console.log(wine)
   }, [])
 
   async function savePlaylist(playlistId) {
@@ -26,6 +27,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
       const wineIdx = allNewWines.findIndex(w => w._id === wine._id);
       allNewWines.splice(wineIdx, 1, updatedWine);
       setAllWines(allNewWines);
+      console.log(updatedWine)
       setWine(updatedWine);
     } else {
       // routes back to results page
