@@ -19,7 +19,12 @@ async function search(req, res) {
 }
 
 async function getTitles(req, res) {
-  const wines = await Wine.find({}).populate('playlists').exec();
+  const wines = await Wine.find({})
+  .populate({
+    path: 'playlists',
+    populate: { path: 'user' }
+  })
+  .exec();
   res.json(wines);
 }
 
