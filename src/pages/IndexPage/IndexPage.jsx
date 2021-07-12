@@ -13,7 +13,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       setPlaylists(userPlaylists);
     }
     setUserWines(allWines.filter(w => (
-      w.playlists.some(p => p.user === user._id)
+      w.playlists.some(p => p.user._id === user._id)
     )))
     setSavedWines(allWines.filter(w => (
       w.playlists.some(p => p.saved.some(u => u === user._id))
@@ -25,7 +25,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
     let wineCopy = { ...wine }
     wineCopy.playlists = wineCopy.playlists.filter(p =>
     (myPlaylistPage ?
-      p.user === user._id
+      p.user._id === user._id
       :
       p.saved.some(u => u === user._id)
     ))
