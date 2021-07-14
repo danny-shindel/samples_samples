@@ -25,6 +25,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
       if (savedPlaylistPage) {
         const wineCopy = { ...updatedWine}
         wineCopy.playlists = wineCopy.playlists.filter(p => p.saved.some(u => u === user._id))
+        if (!wineCopy.playlists.length) history.push('/index')
         setWine(wineCopy);
       } else {
         setWine(updatedWine);
