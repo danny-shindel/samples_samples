@@ -3,12 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../utilities/wines-api';
 import "./ResultsPage.css";
 
-export default function ResultsPage({ user, setClick, wine, setWine, allWines, setAllWines, myPlaylistPage, setPlaylist, setEdit }) {
+export default function ResultsPage({ user, setClick, wine, setWine, allWines, setAllWines, myPlaylistPage, setPlaylist, setEdit, savedPlaylistPage }) {
   const history = useHistory();
-
-  function handleClick() {
-
-  }
 
   useEffect(function () {
     if (!wine) {
@@ -26,7 +22,13 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
       const wineIdx = allNewWines.findIndex(w => w._id === wine._id);
       allNewWines.splice(wineIdx, 1, updatedWine);
       setAllWines(allNewWines);
-      setWine(updatedWine);
+      if (savedPlaylistPage) {
+        const wineCopy = { ...updatedWine}
+        wineCopy.playlists = wineCopy.playlists.filter(p => p.saved.some(u => u === user._id))
+        setWine(wineCopy);
+      } else {
+        setWine(updatedWine);
+      }
     } else {
       // routes back to results page
       setClick(1);
