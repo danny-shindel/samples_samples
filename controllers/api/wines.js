@@ -32,7 +32,11 @@ async function addPlaylist(req, res) {
   const newWine = await Wine.findById(`${req.params.id}`);
   newWine.playlists.push(req.body._id);
   await newWine.save()
-  const wines = await Wine.find({}).populate('playlists').exec();
+  const wines = await Wine.find({}).populate({
+    path: 'playlists',
+    populate: { path: 'user' }
+  })
+    .exec();
   res.json(wines);
 }
 
