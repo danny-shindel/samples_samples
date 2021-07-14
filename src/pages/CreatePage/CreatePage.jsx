@@ -8,6 +8,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
   const history = useHistory();
   const [searchAPI, setSearchAPI] = useState('');
   const [resultsAPI, setResultsAPI] = useState(null);
+  const [duplicate, setDuplicate] = useState(false);
 
   useEffect(function () {
     if (!wine) {
@@ -33,6 +34,15 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
     const newSongs = [...playlist.songs];
     newSongs.push(result);
     setPlaylist({ ...playlist, songs: newSongs });
+    setDuplicate(false);
+  }
+
+  function isInPlaylist(result) {
+    if (playlist.songs.some(song => song === result)) {
+      setDuplicate(result);
+    } else {
+      addToPlaylist(result);
+    }
   }
 
   function deleteFromPlaylist(idx) {
@@ -91,7 +101,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
             {resultsAPI && resultsAPI.map((result, idx) =>
               <div>
                 <div> {result.artist.name} - {result.title}</div>
-                <button onClick={() => addToPlaylist(result)}>ADD</button>
+                <button onClick={() => isInPlaylist(result)}>ADD</button>
               </div>
             )}
           </div>
@@ -100,7 +110,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
           <div className="added-songs-div" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
             {(playlist.songs.length > 0) && playlist.songs.map((song, idx) =>
               <div>
-                <div>{song.title} {song.artist.name}</div>
+                <div>{song.artist.name} - {song.title} </div>
                 <button onClick={() => deleteFromPlaylist(idx)}>Delete</button>
               </div>
             )}
@@ -109,6 +119,15 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
           {playlist._id && <button onClick={handleDeletePlaylist}>DELETE PLAYLIST</button>}
         </div>
       </div>
+      {
+        duplicate && 
+        <div className='alert'>
+          <h2>DUPLICATE SONG</h2>
+          <button onClick={() => addToPlaylist(duplicate)}>YES</button>
+          <button onClick={() => setDuplicate(false)}>NO</button>
+        </div>
+      }
+      
     </>
   )
 }
