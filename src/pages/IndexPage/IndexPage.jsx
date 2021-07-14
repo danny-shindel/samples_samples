@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
 
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine }) {
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine , setSavedPlaylistPage}) {
   const [userWines, setUserWines] = useState([])
   const [savedWines, setSavedWines] = useState([])
   const history = useHistory();
@@ -30,6 +30,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       p.saved.some(u => u === user._id)
     ))
     setWine(wineCopy);
+    if (!myPlaylistPage) setSavedPlaylistPage(true);
     history.push("/results");
   }
 
