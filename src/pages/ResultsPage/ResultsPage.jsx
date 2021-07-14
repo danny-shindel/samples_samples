@@ -23,9 +23,9 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
       allNewWines.splice(wineIdx, 1, updatedWine);
       setAllWines(allNewWines);
       if (savedPlaylistPage) {
-        const wineCopy = { ...updatedWine}
-        wineCopy.playlists = wineCopy.playlists.filter(p => p.saved.some(u => u === user._id))
-        if (!wineCopy.playlists.length) history.push('/index')
+        const wineCopy = { ...updatedWine};
+        wineCopy.playlists = wineCopy.playlists.filter(p => p.saved.some(u => u === user._id));
+        if (!wineCopy.playlists.length) history.push('/index');
         setWine(wineCopy);
       } else {
         setWine(updatedWine);
@@ -80,7 +80,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
               <div className="playlist-info">
                 <img src={playlist.user.profilePic} className="playlist-profile" />
                 <div className="playlist-title">Title: {playlist.title}</div>
-                <div className="playlist-user">User: {playlist.user.name} 240 Downloads</div>
+                <div className="playlist-user">User: {playlist.user.name} {playlist.saved.length} downloads</div>
                 {myPlaylistPage ?
                   <button className="button playlist-button" onClick={() => editPlaylist(playlist)}>
                     Edit
