@@ -1,35 +1,99 @@
 .resultsPage {
     height: 90vh;
+    overflow: scroll;
+    /* padding: 15px; */
 }
 .resultsPage .columns {
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
-.is-5 {
-    padding: 15vmin;
+
+.resultsPageContainer {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.leftHand {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 550px;
+    max-height: 600px;
+    width: 100%;
+    height: 70%;
+    overflow-y: scroll;
+    border-radius: 20px;
+    background: rgba(255,255,255,.7);
+}
+.rightHand {
+    margin: 50px;
+    min-height: 500px;
+    max-height: 100vh;
+    /* width: 60%; */
+    /* border-left: 1px solid rgba(97, 39, 39, 0.2); */
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.leftHand img {
+    padding: 10px;
+    max-height: 300px;
+}
+.resultsPageLeftHandImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resultsPageImageDetails {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.resultsPageWineDetails {
+    padding: 10px;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.wineTitle {
+    padding: 15px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .playlist-holder {
     margin: 0 auto;
-    width: 70%;
     margin-bottom: 2vmin;
+    width: 70%;
+}
+.rightHandContainer {
+    width: 100%;
 }
 
 .playlist-info {
     padding: 5px;
     background: #26495c;
     color: white;
-    display: grid;
+    display: flex;
+    /* justify-content: space-between; */
     border-radius: 10px 10px 0 0;
-    grid-template-columns: 1fr 8fr 1fr;
+    /* grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 
     "profile title button"
-    "profile user button";
+    "profile user button"; */
     height: 70px;
 }
 .playlist-info img {
     height: 60px;
-    width: 60px;
+    min-width: 60px;
+    margin: 0 10px 0 5px;
+}
+.playlist-info-name {
+    width: 100%;
 }
 
 .playlist-profile {
@@ -47,7 +111,7 @@
     grid-area: title;
     text-align: start;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.6em;
 }
 .playlist-user {
     grid-area: user;
@@ -55,32 +119,23 @@
 }
 .playlist-button {
     grid-area: button;
+    padding: .5em;
 }
 
 .song-holder {
-    max-height: 20vmin;
+    max-height: 25vmin;
     overflow-y: scroll;
     padding: 1vmin 0;
 }
-.resultsPage {
-    padding: 15px;
-}
-.leftHand img {
-    max-height: 300px;
-}
 
-.rightHand {
-    border-left: 1px solid rgba(0,0,0,.2);
-    overflow: hidden;
-    overflow-y: scroll;
-    height: 90vh;
-}
 .playlistHolderSong {
-    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
     align-items: center;
 }
 
 .playlistHolderSongInfo {
+    text-align: left;
     width: 100%;
     margin-bottom: 5px;
     display: flex;
@@ -89,6 +144,7 @@
 .playlistHolderSong img {
     margin: 0 10px; 
 }
+
 .playlistHolderSongLength {
     height: 56px;
     width: 90%;
@@ -99,4 +155,8 @@
 }
 .playlistDownloads {
     color: rgba(255,255,255,.6);
+}
+
+.icons {
+    margin-right: 5px;
 }

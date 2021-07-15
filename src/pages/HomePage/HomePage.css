@@ -1,8 +1,9 @@
 .homePage {
-  height: 50%;
+  height: 90vh;
 }
 .homePageContainer {
-  height: 90%;
+  /* height: 90vh; */
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,7 +22,6 @@
 
 .dropdown-content {
   padding: 0;
-  overflow-y: 'scroll';
   height: auto;
   max-height: 40vh;
 }
