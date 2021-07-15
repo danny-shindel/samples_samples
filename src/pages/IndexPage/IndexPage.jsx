@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
+import "./IndexPage.css";
 
 export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine , setSavedPlaylistPage}) {
   const [userWines, setUserWines] = useState([])
@@ -35,21 +36,18 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
   }
 
   return (
-    <>
-      <div>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</div>
+    <div className="IndexPage">
+      <span>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</span>
       <h1>IndexPage</h1>
       <br />
-      {<div>
+      <div>
         {(myPlaylistPage ? userWines : savedWines).map(w => (
           <div>
             <button onClick={() => handleDetails(w)}>{w.title}</button>
-            <hr />
+            <hr/>
           </div>
         ))}
-      </div>}
-      {/* <Link to="/home">
-        <button>Create Playlist</button>
-      </Link> */}
-    </>
+      </div>
+    </div>
   );
 }

@@ -53,27 +53,25 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
   }
 
   return (
-    <div className="columns">
-
-
-      <div className="column is-5">
+    <div className="resultsPage columns">
+      <div className="leftHand column is-5">
         <img src="https://i.imgur.com/8upb3GM.png" alt="wine bottle"></img>
         <p>
           {wine && wine.title}
         </p>
         {user ?
           <>
-            <Link to='/create'><button onClick={handleCreateClick}>CreatePlaylist</button></Link>
+            <Link to='/create'><button onClick={handleCreateClick}>Create Playlist</button></Link>
           </>
           :
           <>
-            <Link to='/auth'><button onClick={() => setClick(2)}>Create Play (login)</button></Link>
+            <Link to='/auth'><button onClick={() => setClick(2)}>Log In To Create Playlist</button></Link>
           </>
         }
       </div>
 
 
-      <div className="column is-7" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '90vh' }}>
+      <div className="rightHand column is-7" style={{overflowY: 'scroll', height: 'auto', maxHeight: '90vh' }}>
         {wine && wine.playlists.map(playlist => (
           <>
             <div className="playlist-holder">

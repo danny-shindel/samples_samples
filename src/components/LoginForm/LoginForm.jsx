@@ -6,11 +6,11 @@ export default function LogIn({ setUser, click, setClick }) {
     email: '',
     password: ''
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false);
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-    setError('');
+    setError(false);
   }
 
   async function handleSubmit(evt) {
@@ -20,13 +20,17 @@ export default function LogIn({ setUser, click, setClick }) {
       setClick(click)
       setUser(user);
     } catch {
-      setError('Log In Failed - Try Again');
+      setError(true);
     }
   }
 
   return (
     <div>
       <div className="form-container" onSubmit={handleSubmit}>
+        <div className="formHeader">
+          <span>Log In</span>
+          <p style={{display: error ? 'block' : 'none'}} className="error-message">Log In Failed - Try Again</p>
+        </div>
         <form autoComplete="off" >
           <label>Email</label>
           <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
@@ -35,7 +39,7 @@ export default function LogIn({ setUser, click, setClick }) {
           <button type="submit">LOG IN</button>
         </form>
       </div>
-      <p className="error-message">&nbsp;{error}</p>
+      
     </div>
   );
 }

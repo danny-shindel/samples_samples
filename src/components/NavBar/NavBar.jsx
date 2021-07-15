@@ -23,7 +23,7 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
   }
 
   return (
-    <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav className="navbar " role="navigation" aria-label="main navigation">
       {user ?
         <>
           <div className="navbar-brand">

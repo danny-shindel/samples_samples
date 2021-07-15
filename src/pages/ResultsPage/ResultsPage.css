@@ -47,3 +47,12 @@
     overflow-y: scroll;
     padding: 1vmin 0;
 }
+.resultsPage {
+    margin-top: none;
+}
+.leftHand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
