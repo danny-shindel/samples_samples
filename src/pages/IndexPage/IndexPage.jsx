@@ -36,17 +36,18 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
   }
 
   return (
-    <div className="IndexPage">
-      <span>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</span>
-      <h1>IndexPage</h1>
-      <br />
-      <div>
-        {(myPlaylistPage ? userWines : savedWines).map(w => (
-          <div>
-            <button onClick={() => handleDetails(w)}>{w.title}</button>
-            <hr/>
-          </div>
-        ))}
+    <div className="indexPage">
+      <div className="indexPageContainer">
+        <span>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</span>
+        <br />
+        <div>
+          {(myPlaylistPage ? userWines : savedWines).map(w => (
+            <div>
+              <button onClick={() => handleDetails(w)}>{w.title}</button>
+              <hr/>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

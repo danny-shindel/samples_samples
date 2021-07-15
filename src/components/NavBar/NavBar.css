@@ -1,11 +1,39 @@
 .search {
-  padding: 1vmin 2vmin 2vmin 2vmin!important;
+  height: 60px;
+  width: 50px;
+
+  /* padding: 1vmin 2vmin 2vmin 2vmin!important; */
+}
+.search p{
+  padding: 0;
+  height: 60px;
+  width: 50px;
+}
+.navbar-item .icon {
+  position: relative;
+  margin-left: 0 !important;
+  height: 60px !important;
+  width: 50px !important;
+}
+
+.search i {
+  margin: 0 auto;
 }
 
 .navbar {
-  /* padding-bottom: 20px; */
+  font-size: 1.2em;
+  height: 60px;
+}
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-burger {
+  height: 60px;
 }
 
 #nav-profile-pic {
+  border-radius: 10px;
   max-height: 50px;
 }

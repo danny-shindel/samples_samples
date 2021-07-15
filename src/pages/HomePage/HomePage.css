@@ -1,7 +1,27 @@
-.homepage {
+.homePage {
+  height: 50%;
+}
+.homePageContainer {
   height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.dropdown {
+  width: 300px;
+}
+.dropdown-trigger {
+  width: 100%;
+}
+
+.dropdown-menu {
+  overflow-y: hidden;
+}
+
+.dropdown-content {
+  padding: 0;
+  overflow-y: 'scroll';
+  height: auto;
+  max-height: 40vh;
 }

@@ -1,34 +1,53 @@
+.resultsPage {
+    height: 90vh;
+}
+.resultsPage .columns {
+    height: 100%;
+}
 .is-5 {
-    padding-left: 30vmin;
+    padding: 15vmin;
 }
 
 .playlist-holder {
-    background-color: green;
-    width: 75vmin;
+    margin: 0 auto;
+    width: 70%;
     margin-bottom: 2vmin;
 }
 
 .playlist-info {
-    background-color: yellow;
+    padding: 5px;
+    background: #26495c;
+    color: white;
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    border-radius: 10px 10px 0 0;
+    grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 
     "profile title button"
-    "profile user button"
-    ;
-    height: 8vmin;
+    "profile user button";
+    height: 70px;
+}
+.playlist-info img {
+    height: 60px;
+    width: 60px;
 }
 
 .playlist-profile {
     grid-area: profile;
     background-color: blue;
     border-radius: 50%;
-    margin: 1vmin 2vmin;
+    /* margin: 1vmin 2vmin; */
+}
+.playlist-songs {
+    background: rgba(38,73,92, .5);
+    color: white;
+    border-radius: 0 0 10px 10px;
 }
 .playlist-title {
     grid-area: title;
     text-align: start;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 .playlist-user {
     grid-area: user;
@@ -38,21 +57,46 @@
     grid-area: button;
 }
 
-.button {
-    height: 3vmin;
-}
-
 .song-holder {
     max-height: 20vmin;
     overflow-y: scroll;
     padding: 1vmin 0;
 }
 .resultsPage {
-    margin-top: none;
+    padding: 15px;
 }
-.leftHand {
+.leftHand img {
+    max-height: 300px;
+}
+
+.rightHand {
+    border-left: 1px solid rgba(0,0,0,.2);
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 90vh;
+}
+.playlistHolderSong {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+.playlistHolderSongInfo {
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.playlistHolderSong img {
+    margin: 0 10px; 
+}
+.playlistHolderSongLength {
+    height: 56px;
+    width: 90%;
+    margin: 0 20px 5px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.playlistDownloads {
+    color: rgba(255,255,255,.6);
 }
