@@ -37,40 +37,42 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage , setS
   }
 
   return (
-    <div className="homepage">
-      <h1 className="is-size-1">Search a Wine!</h1>
-      <div className="dropdown is-active">
-        <div className="dropdown-trigger">
-          <input
-            className="input"
-            type="text"
-            name="title"
-            onChange={handleChange}
-            value={search.title}
-            required
-            autocomplete="off"
-          />
+    <div className="homePage">
+      <div className="homePageContainer">
+        <h1 className="is-size-1">Search a Wine!</h1>
+        <div className="dropdown is-active">
+          <div className="dropdown-trigger">
+            <input
+              className="input"
+              type="text"
+              name="title"
+              onChange={handleChange}
+              value={search.title}
+              required
+              autocomplete="off"
+            />
+          </div>
+          <div className="dropdown-menu">
+            {display && (
+              <div className="dropdown-content">
+                {wineTitles
+                  .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
+                  .slice(0, 20)
+                  .map((wine, idx) => {
+                    return (
+                      <div key={idx}>
+                        <div className="dropdown-item" onClick={() => setSearchedWine(wine)} tabIndex="0">{wine.title}</div>
+                        <hr className="dropdown-divider" />
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            )}
+          </div>
         </div>
-        <div className="dropdown-menu" style={{ overflowY: 'hidden' }}>
-          {display && (
-            <div className="dropdown-content" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
-              {wineTitles
-                .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
-                .slice(0, 20)
-                .map((wine, idx) => {
-                  return (
-                    <div key={idx}>
-                      <div className="dropdown-item" onClick={() => setSearchedWine(wine)} tabIndex="0">{wine.title}</div>
-                      <hr className="dropdown-divider" />
-                    </div>
-                  )
-                })
-              }
-            </div>
-          )}
-        </div>
+        <button className="homePageButton button is-link" onClick={handleSubmit}> Submit </button>
       </div>
-      <button className="button" onClick={handleSubmit}> Submit </button>
     </div>
   );
 }
