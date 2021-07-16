@@ -115,7 +115,7 @@ label {
   align-items: center;
 }
 
-input {
+input, textarea {
   font-size: 18px;
   padding: 5px;
   margin-bottom: 1vmin;
