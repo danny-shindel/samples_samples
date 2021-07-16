@@ -54,7 +54,7 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage , setS
           </div>
           <div className="dropdown-menu">
             {display && (
-              <div className="dropdown-content">
+              <div className="dropdown-content" style={{overflowY:'scroll'}}>
                 {wineTitles
                   .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
                   .slice(0, 20)
