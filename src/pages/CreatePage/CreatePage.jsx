@@ -75,49 +75,59 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
   }
 
   return (
-    <>
-      <div className="columns">
-        <div className="column is-half">
-          <div className="columns">
-            <div className="column"></div>
-            <div className="column is-half">
-              <img className="wine-img" src="https://i.imgur.com/8upb3GM.png"></img>
+    <div className="createPage">
+      <div className="columns createPageMainContainer">
+        <div className="column createLeftMain">
+          <div className="createLeftContainer">
+            <p>{wine.title}</p>
+            <div className="createLeftWineImage">
+              <img className="wine-img" src="https://i.imgur.com/8upb3GM.png"/>
+              <div className="createLeftWineDetails">
+                <p>Region: {wine.region_1}</p>
+                <p>Province: {wine.province}</p>
+                <p className="wineDescription">{wine.description}</p>
+              </div>
             </div>
-            <div className="column"></div>
-          </div>
-        </div>
-        <div className="playlist-info-div column is-half">
-          <input placeholder="title" name="title" onChange={handleChange} value={playlist.title}></input>
-          <textarea placeholder="description" onChange={handleChange} name="about" value={playlist.about}></textarea>
-        </div>
-      </div>
-      <div className="columns">
-        <div className="column">
-          <div>
-            <input placeholder="song/album/artist search" onChange={handleAPIChange} name="searchAPI"></input>
+            <input placeholder="search" onChange={handleAPIChange} name="searchAPI"></input>
             <button onClick={handleAPIClick}>search song</button>
           </div>
-          <div className="results" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
+          <div className="results" style={{overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
+            <p>Searched Songs</p>
             {resultsAPI && resultsAPI.map((result, idx) =>
               <div>
-                <div> {result.artist.name} - {result.title}</div>
+                <img src={result.album.cover_small} alt="" />
+                <div className="resultsInfo">{result.artist.name} - {result.title}</div>
                 <button onClick={() => isInPlaylist(result)}>ADD</button>
               </div>
             )}
           </div>
         </div>
-        <div className="column">
-          <div className="added-songs-div" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
+        
+        {/* ADDED SONGS */}
+        <div className="column createRightContainer">
+          <div className="createRightTop">
+            <p>Create Playlist</p>
+            <label>Playlist Title:</label>
+            <input placeholder="Samples" name="title" onChange={handleChange} value={playlist.title}></input>
+            <label >Playlist Description:</label>
+            <textarea placeholder="Details..." onChange={handleChange} name="about" value={playlist.about}></textarea>
+            {(playlist.songs.length > 0) && <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "UPDATE PLAYLIST" : "SAVE PLAYLIST"}</button>}
+            {playlist._id && <button onClick={handleDeletePlaylist}>DELETE PLAYLIST</button>}
+        
+          </div>
+          <div className="results added-songs-div" style={{ padding: '0', overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
+            <p>Songs Added to your Playlist</p>
             {(playlist.songs.length > 0) && playlist.songs.map((song, idx) =>
               <div>
-                <div>{song.artist.name} - {song.title} </div>
+                <img src={song.album.cover_small} alt="" />
+                <div className="resultsInfo">{song.artist.name} - {song.title} </div>
                 <button onClick={() => deleteFromPlaylist(idx)}>Delete</button>
               </div>
             )}
           </div>
-          {(playlist.songs.length > 0) && <button onClick={playlist._id ? handleUpdatePlaylist : handleSavePlaylist}> {playlist._id ? "UPDATE PLAYLIST" : "SAVE PLAYLIST"}</button>}
-          {playlist._id && <button onClick={handleDeletePlaylist}>DELETE PLAYLIST</button>}
-        </div>
+          </div>
+
+
       </div>
       {
         duplicate && 
@@ -128,6 +138,6 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
         </div>
       }
       
-    </>
+    </div>
   )
 }
