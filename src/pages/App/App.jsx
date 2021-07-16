@@ -101,7 +101,7 @@ export default function App() {
               <ResultsPage setClick={setClick} wine={wine} setWine={setWine}/>
             </Route>
             <Route path="/home">
-              <HomePage setWine={setWine} wineTitles={wineTitles} setMyPlaylistPage={setMyPlaylistPage} />
+              <HomePage setWine={setWine} wineTitles={wineTitles} setMyPlaylistPage={setMyPlaylistPage} setSavedPlaylistPage={setSavedPlaylistPage}/>
             </Route>
             <Route path="/auth">
               <AuthPage user={user} setUser={setUser} click={click} setClick={setClick} />

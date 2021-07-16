@@ -111,12 +111,13 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
                       </button>
                       :
                       <>
-                      { playlist.user._id !== user._id && <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
-                          {playlist.saved.find(userId => userId === user._id) ? 
-                            <span><i class="fas fa-star icons"></i>Unsave</span> 
-                            : 
-                            <span><i class="far fa-star icons"></i>Save</span>}
-                        </button>}
+                        { playlist.user._id !== user._id && <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
+                            {playlist.saved.find(userId => userId === user._id) ? 
+                              <span><i class="fas fa-star icons"></i>Unsave</span> 
+                              : 
+                              <span><i class="far fa-star icons"></i>Save</span>}
+                          </button>
+                        }
                       </>
                     }
                   </div>
