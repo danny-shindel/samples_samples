@@ -76,7 +76,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
 
   return (
     <div className="createPage">
-      <div className="columns createPageMainContainer">
+      <div className={`columns createPageMainContainer ${duplicate ? 'disablePage' : ''}`}>
         <div className="column createLeftMain">
           <div className="createLeftContainer">
             <p>{wine.title}</p>
@@ -132,9 +132,10 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
       {
         duplicate && 
         <div className='alert'>
-          <h2>DUPLICATE SONG</h2>
-          <button onClick={() => addToPlaylist(duplicate)}>YES</button>
-          <button onClick={() => setDuplicate(false)}>NO</button>
+          <h2>Duplicate Song</h2>
+          <p>This song is already on your playlist. Would you like to add it again?</p>
+          <button onClick={() => addToPlaylist(duplicate)}>Yes</button>
+          <button onClick={() => setDuplicate(false)}>No</button>
         </div>
       }
       
