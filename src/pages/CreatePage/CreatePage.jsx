@@ -38,8 +38,10 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
   }
 
   function isInPlaylist(result) {
-    if (playlist.songs.some(song => song === result)) {
+    console.log(playlist.songs[0], result, playlist.songs[0] === result);
+    if (playlist.songs.some(song => song.id === result.id)) {
       setDuplicate(result);
+      console.log('yooooo')
     } else {
       addToPlaylist(result);
     }
