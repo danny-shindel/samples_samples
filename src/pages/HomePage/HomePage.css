@@ -25,3 +25,8 @@
   height: auto;
   max-height: 40vh;
 }
+
+.focused-wine {
+  border: solid blue 1px;
+  border-radius: 5px;
+}
