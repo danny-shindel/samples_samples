@@ -76,6 +76,10 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
     history.push('/index');
   }
 
+  function handleEnterKeyAPISearch(evt) {
+    if (evt.keyCode === 13) handleAPIClick();
+  }
+
   return (
     <div className="createPage">
       <div className={`columns createPageMainContainer ${duplicate ? 'disablePage' : ''}`}>
@@ -90,7 +94,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
                 <p className="wineDescription">{wine.description}</p>
               </div>
             </div>
-            <input placeholder="search" onChange={handleAPIChange} name="searchAPI"></input>
+            <input onKeyDown={handleEnterKeyAPISearch} placeholder="search" onChange={handleAPIChange} name="searchAPI"></input>
             <button onClick={handleAPIClick}>search song</button>
           </div>
           <div className="results" style={{overflowY: 'scroll', height: 'auto', maxHeight: '40vh' }}>
