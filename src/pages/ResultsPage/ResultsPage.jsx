@@ -23,7 +23,7 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
       allNewWines.splice(wineIdx, 1, updatedWine);
       setAllWines(allNewWines);
       if (savedPlaylistPage) {
-        const wineCopy = { ...updatedWine};
+        const wineCopy = { ...updatedWine };
         wineCopy.playlists = wineCopy.playlists.filter(p => p.saved.some(u => u === user._id));
         if (!wineCopy.playlists.length) history.push('/index');
         setWine(wineCopy);
@@ -49,11 +49,11 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
       about: "",
       songs: []
     });
-    setEdit(false)
+    setEdit(false);
   }
   function handleSongLength(seconds) {
-    let minutes = Math.floor(seconds/60);
-    let trueSeconds = Math.abs(seconds - (minutes*60));
+    let minutes = Math.floor(seconds / 60);
+    let trueSeconds = Math.abs(seconds - (minutes * 60));
     if (trueSeconds < 10) {
       trueSeconds = '0' + trueSeconds;
     }
@@ -65,17 +65,15 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
     <div className="resultsPage">
       <div className="resultsPageContainer">
         <div className="leftHand">
-          
           <p className="wineTitle">{wine && wine.title}</p>
           <div className="resultsPageLeftHandImage">
             <img src="https://i.imgur.com/8upb3GM.png" alt="wine bottle"></img>
             <div className="resultsPageImageDetails">
               <p>{wine && wine.variety}</p>
-              <p>Region: {wine &&  wine.region_1}</p>
+              <p>Region: {wine && wine.region_1}</p>
               <p>Province: {wine && wine.province}</p>
             </div>
           </div>
-          
           <div className="resultsPageWineDetails">
             <p>{wine && wine.description}</p>
             {user ?
@@ -107,16 +105,16 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
                   <div className="playlist-info-button">
                     {myPlaylistPage ?
                       <button className="button playlist-button" onClick={() => editPlaylist(playlist)}>
-                        <span><i class="fas fa-edit icons"></i>Edit</span> 
+                        <span><i class="fas fa-edit icons"></i>Edit</span>
                       </button>
                       :
                       <>
-                        { playlist.user._id !== user._id && <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
-                            {playlist.saved.find(userId => userId === user._id) ? 
-                              <span><i class="fas fa-star icons"></i>Unsave</span> 
-                              : 
-                              <span><i class="far fa-star icons"></i>Save</span>}
-                          </button>
+                        {(playlist.user._id !== (user && user._id)) && <button className="button playlist-button" onClick={() => savePlaylist(playlist._id)}>
+                          {playlist.saved.find(userId => userId === user._id) ?
+                            <span><i class="fas fa-star icons"></i>Unsave</span>
+                            :
+                            <span><i class="far fa-star icons"></i>{user ? 'Save' : 'Login to Save'}</span>}
+                        </button>
                         }
                       </>
                     }
@@ -143,6 +141,6 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
         </div>
       </div>
     </div>
-    
+
   )
 }
