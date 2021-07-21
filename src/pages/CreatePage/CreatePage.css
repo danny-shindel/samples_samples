@@ -1,3 +1,12 @@
+.createPage {
+  position: relative;
+  padding: 50px 50px 0 50px;
+  height: 100vh;
+}
+.createPageMainContainer {
+  max-height: 90%;
+}
+
 .wine-img {
   max-height: 30vh;
 }
@@ -20,15 +29,117 @@
 }
 
 .results > div {
+  padding: 5px 10px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  width: 75%
+  width: 100%
+}
+.results div img {
+  padding: 0 5px;
+}
+.results div div {
+  width: 100%;
 }
 
 .added-songs-div > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.resultsInfo {
+  text-align: left;
+}
+.createLeftMain {
+  max-height: 50%;
+}
+.createLeftContainer {
+  border-radius: 10px 10px 0 0;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0px -5px 15px 5px rgba(0,0,0,.5);
   width: 80%;
+  margin: 0 auto;
+}
+.results {
+  width: 80%;
+  margin: 0 auto;
+  color: white;
+  border-radius: 0 0 10px 10px;
+  background: rgba(38,73,92, .5);
+  z-index: 5;
+  box-shadow: 0px 7px 15px 5px rgba(0,0,0,.5);
+  padding: 10px;
+}
+.createLeftContainer > p {
+  padding: 10px;
+  font-size: 3vmin;
+  font-weight: bold;
+}
+.createLeftWineImage {
+  padding: 10px;
+  display: flex;
+}
+.createLeftWineDetails {
+  padding: 10px;
+  text-align: left;
+}
+.createLeftWineDetails p {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.2);
+}
+.wineDescription {
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  max-height: 100px;
+  overflow: scroll;
+  overflow-y: scroll;
+}
+.createRightContainer .results {
+  width: 70%;
+}
+
+.createRightTop {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0px -5px 15px 5px rgba(0,0,0,.5);
+  padding: 20px;
+  margin: 0 auto;
+  width: 70%;
+  background: rgba(255,255,255,.9);
+}
+.createRightTop p {
+  font-size: 4vmin;
+  font-weight: bold;
+}
+.disablePage {
+  /* background: gray; */
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.alertContainer {
+  position: relative;
+}
+
+.alert {
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.9);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+.alert h2 {
+  font-size: 24px;
+}
+.alert button {
+  width: 30%;
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
+import "./IndexPage.css";
 
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine }) {
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine , setSavedPlaylistPage}) {
   const [userWines, setUserWines] = useState([])
   const [savedWines, setSavedWines] = useState([])
   const history = useHistory();
@@ -30,25 +31,24 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
       p.saved.some(u => u === user._id)
     ))
     setWine(wineCopy);
+    if (!myPlaylistPage) setSavedPlaylistPage(true);
     history.push("/results");
   }
 
   return (
-    <>
-      <div>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</div>
-      <h1>IndexPage</h1>
-      <br />
-      {<div>
-        {(myPlaylistPage ? userWines : savedWines).map(w => (
-          <div>
-            <button onClick={() => handleDetails(w)}>{w.title}</button>
-            <hr />
-          </div>
-        ))}
-      </div>}
-      {/* <Link to="/home">
-        <button>Create Playlist</button>
-      </Link> */}
-    </>
+    <div className="indexPage">
+      <div className="indexPageContainer">
+        <span>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</span>
+        <br />
+        <div>
+          {(myPlaylistPage ? userWines : savedWines).map(w => (
+            <div>
+              <button onClick={() => handleDetails(w)}>{w.title}</button>
+              <hr/>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

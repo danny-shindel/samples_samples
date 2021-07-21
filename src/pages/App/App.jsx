@@ -27,6 +27,7 @@ export default function App() {
     songs: []
   });
   const [edit, setEdit] = useState(false);
+  const [savedPlaylistPage, setSavedPlaylistPage] = useState(false)
 
 
   useEffect(function () {
@@ -53,14 +54,25 @@ export default function App() {
         <>
           <Switch>
             <Route path="/results">
-              <ResultsPage user={user} wine={wine} setWine={setWine} allWines={allWines} setAllWines={setAllWines} myPlaylistPage={myPlaylistPage} 
-              setPlaylist={setPlaylist} setEdit={setEdit}/>
+              <ResultsPage 
+                user={user} 
+                wine={wine} 
+                setWine={setWine} 
+                allWines={allWines} 
+                setAllWines={setAllWines} 
+                myPlaylistPage={myPlaylistPage} 
+                setPlaylist={setPlaylist} 
+                setEdit={setEdit} 
+                savedPlaylistPage={savedPlaylistPage}
+              />
             </Route>
-            {/* <Route path="/wines/:id">
-              <ResultsPage user={user} wine={wine} setWine={setWine} />
-            </Route> */}
             <Route path="/home">
-              <HomePage setWine={setWine} wineTitles={wineTitles} setMyPlaylistPage={setMyPlaylistPage} />
+              <HomePage 
+                setWine={setWine} 
+                wineTitles={wineTitles} 
+                setMyPlaylistPage={setMyPlaylistPage} 
+                setSavedPlaylistPage={setSavedPlaylistPage}
+              />
             </Route>
             <Route path="/index">
               <IndexPage
@@ -70,6 +82,7 @@ export default function App() {
                 setPlaylists={setPlaylists}
                 allWines={allWines}
                 setWine={setWine}
+                setSavedPlaylistPage={setSavedPlaylistPage}
               />
             </Route>
             <Route path="/create">
@@ -88,7 +101,7 @@ export default function App() {
               <ResultsPage setClick={setClick} wine={wine} setWine={setWine}/>
             </Route>
             <Route path="/home">
-              <HomePage setWine={setWine} wineTitles={wineTitles} setMyPlaylistPage={setMyPlaylistPage} />
+              <HomePage setWine={setWine} wineTitles={wineTitles} setMyPlaylistPage={setMyPlaylistPage} setSavedPlaylistPage={setSavedPlaylistPage}/>
             </Route>
             <Route path="/auth">
               <AuthPage user={user} setUser={setUser} click={click} setClick={setClick} />

@@ -1,7 +1,36 @@
-.homepage {
-  height: 90%;
+.homePage {
+  height: 90vh;
+}
+.homePageContainer {
+  /* height: 90vh; */
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.dropdown {
+  width: 300px;
+}
+.dropdown-trigger {
+  width: 100%;
+}
+
+.dropdown-menu {
+  overflow-y: hidden;
+}
+
+.dropdown-content {
+  padding: 0;
+  height: auto;
+  max-height: 40vh;
+}
+
+.dropdown-item {
+  border: 1px transparent solid;
+  border-radius: 10px;
+}
+
+.focused-wine {
+  border-color: blue;
 }

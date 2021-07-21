@@ -23,7 +23,7 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
   }
 
   return (
-    <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav className="navbar " role="navigation" aria-label="main navigation">
       {user ?
         <>
           <div className="navbar-brand">
@@ -54,8 +54,8 @@ export default function NavBar({ user, setUser, setMyPlaylistPage }) {
           <div className={`navbar-menu ${isActive ? 'is-active' : ''}`} id="navbarBasicExample">
             <div className="navbar-end">
               <Link className="navbar-item" to="/index" onClick={handleMyPlaylistClick}>My Playlists</Link>
-              <Link className="navbar-item" to="/index" onClick={handleSavedClick}>Saved</Link>
-              <Link className="navbar-item" to="" onClick={handleLogOut}>Log Out</Link>
+              <Link className="navbar-item" to="/index" onClick={handleSavedClick}>Saved Playlists</Link>
+              <Link className="navbar-item navbar-itemLast" to="" onClick={handleLogOut}>Log Out</Link>
             </div>
           </div>
         </>
