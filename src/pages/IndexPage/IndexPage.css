@@ -1,3 +1,13 @@
 .indexPage {
     padding: 50px;
 }
+
+.indexPageContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.indexPlaylists, .showPlaylists {
+    display: flex;
+    justify-content: center;
+}

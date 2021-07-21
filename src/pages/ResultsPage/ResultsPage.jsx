@@ -10,7 +10,6 @@ export default function ResultsPage({ user, setClick, wine, setWine, allWines, s
     if (!wine) {
       setWine(JSON.parse(localStorage.getItem('wine')));
     }
-    console.log(wine)
   }, [])
 
   async function savePlaylist(playlistId) {

@@ -83,6 +83,7 @@ export default function App() {
                 allWines={allWines}
                 setWine={setWine}
                 setSavedPlaylistPage={setSavedPlaylistPage}
+                setMyPlaylistPage={setMyPlaylistPage}
               />
             </Route>
             <Route path="/create">

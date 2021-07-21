@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as playlistAPI from '../../utilities/playlist-api';
 import "./IndexPage.css";
+import IndexPlaylists from '../../components/Index/IndexPlaylists/IndexPlaylists';
+import ShowPlaylists from '../../components/Index/ShowPlaylists/ShowPlaylists';
 
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine , setSavedPlaylistPage}) {
+export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine , setSavedPlaylistPage, setMyPlaylistPage}) {
   const [userWines, setUserWines] = useState([])
   const [savedWines, setSavedWines] = useState([])
   const history = useHistory();
@@ -22,33 +24,37 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
     getPlaylists();
   }, [allWines]);
 
-  function handleDetails(wine) {
-    let wineCopy = { ...wine }
-    wineCopy.playlists = wineCopy.playlists.filter(p =>
-    (myPlaylistPage ?
-      p.user._id === user._id
-      :
-      p.saved.some(u => u === user._id)
-    ))
-    setWine(wineCopy);
-    if (!myPlaylistPage) setSavedPlaylistPage(true);
-    history.push("/results");
-  }
+  // function handleDetails(wine) {
+  //   let wineCopy = { ...wine }
+  //   wineCopy.playlists = wineCopy.playlists.filter(p =>
+  //   (myPlaylistPage ?
+  //     p.user._id === user._id
+  //     :
+  //     p.saved.some(u => u === user._id)
+  //   ))
+  //   setWine(wineCopy);
+  //   if (!myPlaylistPage) setSavedPlaylistPage(true);
+  //   history.push("/results");
+  // }
 
   return (
     <div className="indexPage">
       <div className="indexPageContainer">
-        <span>{myPlaylistPage ? 'My Playlists' : 'Saved Playlists'}</span>
-        <br />
-        <div>
-          {(myPlaylistPage ? userWines : savedWines).map(w => (
-            <div>
-              <button onClick={() => handleDetails(w)}>{w.title}</button>
-              <hr/>
-            </div>
-          ))}
-        </div>
+      <div className="indexPlaylists">
+        <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
+      </div>
+      <div className="showPlaylists">
+        <ShowPlaylists />
+      </div>
       </div>
     </div>
-  );
-}
+    );
+  }
+
+
+
+
+
+
+
+  
