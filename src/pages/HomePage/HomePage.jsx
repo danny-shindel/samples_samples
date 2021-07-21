@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 import * as winesAPI from "../../utilities/wines-api";
 import './HomePage.css';
@@ -6,15 +6,22 @@ import './HomePage.css';
 
 export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSavedPlaylistPage }) {
   const [search, setSearch] = useState({ title: '' });
-  const [focusDiv, setFocusDiv] = useState({ id: "" });
+  const [focusDiv, setFocusDiv] = useState({ id: '' });
   const history = useHistory();
   // state for autocomplete feature
   const [display, setDisplay] = useState(false);
 
+  // Prevents scrolling by arrow key
+  window.addEventListener('keydown', (evt) => {
+    if ([38, 40].indexOf(evt.keyCode) > -1) {
+      evt.preventDefault();
+    }
+  }, false);
 
   function handleChange(evt) {
     setSearch({ [evt.target.name]: evt.target.value });
     evt.target.value.length ? setDisplay(true) : setDisplay(false);
+    setFocusDiv({ id: '' });
   }
 
   async function handleSubmit() {
@@ -24,7 +31,7 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
       setWine(wine);
       localStorage.setItem('wine', JSON.stringify(wine));
       setMyPlaylistPage(false);
-      setSavedPlaylistPage(false)
+      setSavedPlaylistPage(false);
       history.push('/results');
     } else {
       // inform user there is no wine by that name
@@ -42,19 +49,22 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
   function handleWineSearch(evt) {
     if (evt.keyCode === 13) handleSubmit();
     if (evt.keyCode === 40) {
+      if (!display) return;
       const wineDiv = document.getElementById('div-0');
-      setFocusDiv(wineDiv);
-      wineDiv.focus();
+      if(wineDiv) {
+        setFocusDiv(wineDiv);
+        wineDiv.focus();
+      }
     };
   }
 
   function handleArrowSelect(evt) {
     if (evt.keyCode === 13) {
       document.getElementById('wine-search').focus();
-      setSearch({ "title": evt.target.innerText });
+      setSearch({ 'title': evt.target.innerText });
       setDisplay(false);
-    } else{
-      if (evt.keyCode !== 40 || evt.keyCode !== 38) return;
+    } else {
+      if (evt.keyCode !== 40 && evt.keyCode !== 38) return;
       let wineDiv;
       if (evt.keyCode === 40) {
         // Down arrow logic
@@ -65,7 +75,7 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
         // Up arrow logic
         wineDiv = document.getElementById(`div-${parseInt(focusDiv.id.match(/\d+$/)) - 1}`);
         if (wineDiv === null) {
-          const mainDivChildren = document.getElementById('test').children;
+          const mainDivChildren = document.getElementById('dropdown-content-div').children;
           wineDiv = mainDivChildren[mainDivChildren.length - 1].children[0];
         }
       };
@@ -87,23 +97,29 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
               name="title"
               onChange={handleChange}
               onKeyDown={handleWineSearch}
-              onClick={() => setFocusDiv({ id: "" })}
+              onClick={() => setFocusDiv({ id: '' })}
               value={search.title}
               required
               autocomplete="off"
             />
           </div>
-          <div className="dropdown-menu">
+          <div id="dropdown-menu-div" className="dropdown-menu">
             {display && (
-              <div id="test" className="dropdown-content" style={{ overflowY: 'scroll' }}>
+              <div id="dropdown-content-div" className="dropdown-content" style={{ overflowY: 'scroll' }}>
                 {wineTitles
                   .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
                   .slice(0, 20)
                   .map((wine, idx) => {
                     return (
-                      <div key={idx} >
-                        <div id={`div-${idx}`} name="title" onKeyDown={handleArrowSelect}
-                          className={`dropdown-item ${(focusDiv.id === `div-${idx}`) && "focused-wine"}`} onClick={() => setSearchedWine(wine)} tabIndex="0">{wine.title}
+                      <div key={idx}>
+                        <div
+                          id={`div-${idx}`}
+                          className={`dropdown-item ${focusDiv.id === `div-${idx}` && "focused-wine"}`}
+                          onKeyDown={handleArrowSelect}
+                          onClick={() => setSearchedWine(wine)}
+                          tabIndex="0"
+                        >
+                          {wine.title}
                         </div>
                         <hr className="dropdown-divider" />
                       </div>

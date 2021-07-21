@@ -26,7 +26,11 @@
   max-height: 40vh;
 }
 
+.dropdown-item {
+  border: 1px transparent solid;
+  border-radius: 10px;
+}
+
 .focused-wine {
-  border: solid blue 1px;
-  border-radius: 5px;
+  border-color: blue;
 }
