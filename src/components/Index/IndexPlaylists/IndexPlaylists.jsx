@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
+import "./IndexPlaylists.css";
 
 export default function IndexPlaylists({user, userWines, savedWines, myPlaylistPage, setWine , setSavedPlaylistPage, setMyPlaylistPage}) {
+    
     const history = useHistory();
 
     function handleDetails(wine) {
@@ -17,16 +19,16 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
         }
 
     return (
-        <div>
-            <button onClick={() => setMyPlaylistPage(true)}>Crearted</button>
-            <button onClick={() => setMyPlaylistPage(false)}>Saved</button>
-            <br />
-            <div>
-            {(myPlaylistPage ? userWines : savedWines).map(w => (
-            <div>
-                <button onClick={() => handleDetails(w)}>{w.title}</button>
-                <hr/>
-             </div>
+        <div className="indexPlaylists">
+            <div className="indexPlaylistsButtons">
+                <button className={`${myPlaylistPage ? 'switchOn' : 'switchOff'}`} onClick={() => setMyPlaylistPage(true)}>Created</button>
+                <button className={`${myPlaylistPage ? 'switchOff' : 'switchOn'}`} onClick={() => setMyPlaylistPage(false)}>Saved</button>
+            </div>
+            <div className="indexPlaylistsWines">
+                {(myPlaylistPage ? userWines : savedWines).map(w => (
+                <div>
+                    <button onClick={() => handleDetails(w)}>{w.title}</button>
+                </div>
              ))}
             </div>
         </div>
