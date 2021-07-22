@@ -40,12 +40,12 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
   return (
     <div className="indexPage">
       <div className="indexPageContainer">
-      <div className="indexPlaylists">
-        <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
-      </div>
-      <div className="showPlaylists">
-        <ShowPlaylists />
-      </div>
+        <div className="indexPlaylists">
+          <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
+        </div>
+        <div className="showPlaylists">
+          <ShowPlaylists />
+        </div>
       </div>
     </div>
     );

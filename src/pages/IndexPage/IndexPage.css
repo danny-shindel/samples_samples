@@ -1,5 +1,6 @@
 .indexPage {
     padding: 50px;
+    height: 100vh;
 }
 
 .indexPageContainer {
@@ -10,4 +11,7 @@
 .indexPlaylists, .showPlaylists {
     display: flex;
     justify-content: center;
+}
+.indexPageContainer .indexPlaylists {
+    width: 90%;
 }
