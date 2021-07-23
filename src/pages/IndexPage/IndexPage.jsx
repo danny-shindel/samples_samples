@@ -28,10 +28,10 @@ export default function IndexPage({ user, myPlaylistPage, setPlaylists, setClick
     <div className="indexPage">
       <div className="indexPageContainer">
         <div className="indexPlaylists">
-          <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
+          <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} wine={wine} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
         </div>
         <div className="showPlaylists">
-          <ShowPlaylists user={user} setClick={setClick} wine={wine} setWine={setWine} allWines={allWines} setAllWines={setAllWines} myPlaylistPage={myPlaylistPage} setPlaylist={setPlaylist} setEdit={setEdit} savedPlaylistPage={savedPlaylistPage}/>
+          <ShowPlaylists user={user} setClick={setClick} wine={wine} setWine={setWine} allWines={allWines} setAllWines={setAllWines} myPlaylistPage={myPlaylistPage} setPlaylist={setPlaylist} setEdit={setEdit} savedPlaylistPage={savedPlaylistPage} userWines={userWines} savedWines={savedWines}/>
         </div>
       </div>
     </div>
