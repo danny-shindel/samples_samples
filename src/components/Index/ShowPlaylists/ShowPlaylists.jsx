@@ -3,14 +3,20 @@ import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../../utilities/wines-api';
 // import "./ResultsPage.css";
 
-export default function ShowPlaylists({ user, setClick, wine, setWine, allWines, setAllWines, myPlaylistPage, setPlaylist, setEdit, savedPlaylistPage }) {
+export default function ShowPlaylists({ user, setClick, wine, setWine, allWines, setAllWines, myPlaylistPage, setPlaylist, setEdit, savedPlaylistPage, userWines, savedWines }) {
   const history = useHistory();
 
   useEffect(function () {
-    if (!wine) {
-      setWine(JSON.parse(localStorage.getItem('wine')));
+    // if (!wine) {
+    //   setWine(JSON.parse(localStorage.getItem('wine')));
+    // }
+    if(myPlaylistPage){
+      setWine(userWines[0])
     }
-  }, [])
+    console.log(userWines);
+  }, [userWines])
+  
+  console.log(userWines);
 
   async function savePlaylist(playlistId) {
     if (user) {
