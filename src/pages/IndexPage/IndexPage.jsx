@@ -5,7 +5,7 @@ import "./IndexPage.css";
 import IndexPlaylists from '../../components/Index/IndexPlaylists/IndexPlaylists';
 import ShowPlaylists from '../../components/Index/ShowPlaylists/ShowPlaylists';
 
-export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylists, allWines, setWine , setSavedPlaylistPage, setMyPlaylistPage}) {
+export default function IndexPage({ user, myPlaylistPage, setPlaylists, setClick, wine, setAllWines, setPlaylist, setEdit, savedPlaylistPage, allWines, setWine , setSavedPlaylistPage, setMyPlaylistPage}) {
   const [userWines, setUserWines] = useState([])
   const [savedWines, setSavedWines] = useState([])
   const history = useHistory();
@@ -24,19 +24,6 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
     getPlaylists();
   }, [allWines]);
 
-  // function handleDetails(wine) {
-  //   let wineCopy = { ...wine }
-  //   wineCopy.playlists = wineCopy.playlists.filter(p =>
-  //   (myPlaylistPage ?
-  //     p.user._id === user._id
-  //     :
-  //     p.saved.some(u => u === user._id)
-  //   ))
-  //   setWine(wineCopy);
-  //   if (!myPlaylistPage) setSavedPlaylistPage(true);
-  //   history.push("/results");
-  // }
-
   return (
     <div className="indexPage">
       <div className="indexPageContainer">
@@ -44,7 +31,7 @@ export default function IndexPage({ user, myPlaylistPage, playlists, setPlaylist
           <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
         </div>
         <div className="showPlaylists">
-          <ShowPlaylists />
+          <ShowPlaylists user={user} setClick={setClick} wine={wine} setWine={setWine} allWines={allWines} setAllWines={setAllWines} myPlaylistPage={myPlaylistPage} setPlaylist={setPlaylist} setEdit={setEdit} savedPlaylistPage={savedPlaylistPage}/>
         </div>
       </div>
     </div>

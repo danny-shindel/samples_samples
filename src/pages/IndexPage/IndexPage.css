@@ -1,17 +1,19 @@
 .indexPage {
-    padding: 50px;
     height: 100vh;
 }
 
 .indexPageContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    height: 100vh;
 }
 
 .indexPlaylists, .showPlaylists {
     display: flex;
+    height: 100%;
     justify-content: center;
 }
 .indexPageContainer .indexPlaylists {
     width: 90%;
+    height: 100vh;
 }
