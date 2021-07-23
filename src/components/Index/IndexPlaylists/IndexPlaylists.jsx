@@ -15,7 +15,7 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
           ))
           setWine(wineCopy);
           if (!myPlaylistPage) setSavedPlaylistPage(true);
-          history.push("/results");
+        //   history.push("/results");
         }
 
     return (

@@ -78,8 +78,13 @@ export default function App() {
               <IndexPage
                 user={user}
                 myPlaylistPage={myPlaylistPage}
-                playlists={playlists}
                 setPlaylists={setPlaylists}
+                setClick={setClick}
+                wine={wine}
+                setAllWines={setAllWines}
+                setPlaylist={setPlaylist}
+                setEdit={setEdit}
+                savedPlaylistPage={savedPlaylistPage}
                 allWines={allWines}
                 setWine={setWine}
                 setSavedPlaylistPage={setSavedPlaylistPage}

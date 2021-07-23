@@ -1,6 +1,7 @@
 .indexPlaylists {
     display: flex;
     width: 100%;
+    height: 100vh;
     margin: 0 auto;
     flex-direction: column;
     border-radius: 20px;
@@ -66,9 +67,9 @@
     background: #94EBFF;
     color: black;
     font-size: 1.1em;
-    transition: .5s;
+    transition: .7s;
 }
 .switchOff {
     background: rgba(255,255,255,.5);
-    transition: .5s;
+    transition: .7s;
 }
