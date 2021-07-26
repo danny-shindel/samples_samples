@@ -37,8 +37,9 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
     }
     
     function handleSaved(wine) {
-        let wineCopy = { ...wine }
-        wineCopy.playlists = wineCopy.playlists.filter(p =>
+        if (wine) {
+            let wineCopy = { ...wine }
+            wineCopy.playlists = wineCopy.playlists.filter(p =>
             (myPlaylistPage ?
                 p.user._id === user._id
                 :
@@ -47,8 +48,12 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
             setWine(wineCopy);
             setMyPlaylistPage(false);
             if (!myPlaylistPage) setSavedPlaylistPage(true);
-          //   history.push("/results");
-          }
+            //   history.push("/results");
+        } else {
+            setMyPlaylistPage(false);
+            if (!myPlaylistPage) setSavedPlaylistPage(true);
+        }
+    }
     // function handleCreatedClick(){
     //     handleDetails(userWines[0]);
     //     setMyPlaylistPage(true);
