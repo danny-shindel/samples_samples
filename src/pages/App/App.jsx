@@ -7,6 +7,7 @@ import HomePage from '../HomePage/HomePage';
 import IndexPage from '../IndexPage/IndexPage';
 import PlaylistPage from '../PlaylistPage/PlaylistPage';
 import CreatePage from '../CreatePage/CreatePage';
+import LoadPage from '../LoadPage/LoadPage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as winesAPI from "../../utilities/wines-api";
 
@@ -20,7 +21,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [wine, setWine] = useState(null);
   const [wineTitles, setWineTitles] = useState([]);
-  const [userWines, setUserWines] = useState([]);
+  // const [userWines, setUserWines] = useState([]);
   const [playlist, setPlaylist] = useState({
     title: "",
     about: "",
@@ -50,7 +51,7 @@ export default function App() {
   return (
     <main className="App">
       <NavBar user={user} setUser={setUser} setMyPlaylistPage={setMyPlaylistPage} />
-      {user ?
+      { allWines.length ? user ?
         <>
           <Switch>
             <Route path="/results">
@@ -115,7 +116,7 @@ export default function App() {
             <Redirect to="/home" />
           </Switch>
         </>
-      }
+        : <LoadPage />}
     </main>
   );
 }
