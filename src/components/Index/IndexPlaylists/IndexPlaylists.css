@@ -68,6 +68,7 @@
     color: black;
     font-size: 1.1em;
     transition: .7s;
+    pointer-events: none;
 }
 .switchOff {
     background: rgba(255,255,255,.5);

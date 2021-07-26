@@ -21,6 +21,19 @@ export default function IndexPage({ user, myPlaylistPage, setPlaylists, setClick
     setSavedWines(allWines.filter(w => (
       w.playlists.some(p => p.saved.some(u => u === user._id))
     )))
+    let initalWine = allWines.find(w => (
+      w.playlists.some(p => myPlaylistPage ? p.user._id === user._id : p.saved.some(u => u === user._id))
+    ))
+    if (initalWine) {
+      let theWine = { ...initalWine }
+      theWine.playlists = theWine.playlists.filter(p =>
+      (myPlaylistPage ?
+        p.user._id === user._id
+        :
+        p.saved.some(u => u === user._id)
+      ))
+      setWine(theWine);
+    }
     getPlaylists();
   }, [allWines]);
 

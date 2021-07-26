@@ -6,9 +6,6 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
     
     const history = useHistory();
 
-
-
-
     function handleDetails(wine) {
           let wineCopy = { ...wine }
           wineCopy.playlists = wineCopy.playlists.filter(p =>
@@ -21,52 +18,33 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
           if (!myPlaylistPage) setSavedPlaylistPage(true);
         //   history.push("/results");
         }
-
-    function handleCreated(wine) {
-        let wineCopy = { ...wine }
-        wineCopy.playlists = wineCopy.playlists.filter(p =>
-        (myPlaylistPage ?
-            p.user._id === user._id
-            :
-            p.saved.some(u => u === user._id)
-        ))
-        setWine(wineCopy);
-        setMyPlaylistPage(true);
-        if (!myPlaylistPage) setSavedPlaylistPage(true);
-        //   history.push("/results");
-    }
     
-    function handleSaved(wine) {
+    function handleToggle(wine) {
         if (wine) {
             let wineCopy = { ...wine }
             wineCopy.playlists = wineCopy.playlists.filter(p =>
-            (myPlaylistPage ?
+            (!myPlaylistPage ?
                 p.user._id === user._id
                 :
                 p.saved.some(u => u === user._id)
             ))
             setWine(wineCopy);
-            setMyPlaylistPage(false);
+            setMyPlaylistPage(!myPlaylistPage);
             if (!myPlaylistPage) setSavedPlaylistPage(true);
             //   history.push("/results");
         } else {
-            setMyPlaylistPage(false);
+            console.log("HEYO")
+            setWine(false);
+            setMyPlaylistPage(!myPlaylistPage);
             if (!myPlaylistPage) setSavedPlaylistPage(true);
         }
     }
-    // function handleCreatedClick(){
-    //     handleDetails(userWines[0]);
-    //     setMyPlaylistPage(true);
-    //     console.log();
-    // }
-
-
 
     return (
         <div className="indexPlaylists">
             <div className="indexPlaylistsButtons">
-                <button className={`${myPlaylistPage ? 'switchOn' : 'switchOff'}`} onClick={() => handleCreated(userWines[0])}>Created</button>
-                <button className={`${myPlaylistPage ? 'switchOff' : 'switchOn'}`} onClick={() => handleSaved(savedWines[0])}>Saved</button>
+                <button className={`${myPlaylistPage ? 'switchOn' : 'switchOff'}`} onClick={() => handleToggle(userWines[0])}>Created</button>
+                <button className={`${myPlaylistPage ? 'switchOff' : 'switchOn'}`} onClick={() => handleToggle(savedWines[0])}>Saved</button>
             </div>
             <div className="indexPlaylistsWines">
                 {(myPlaylistPage ? userWines : savedWines).map(w => (
