@@ -7,16 +7,8 @@ export default function ShowPlaylists({ user, setClick, wine, setWine, allWines,
   const history = useHistory();
 
   useEffect(function () {
-    // if (!wine) {
-    //   setWine(JSON.parse(localStorage.getItem('wine')));
-    // }
-    if(myPlaylistPage){
-      setWine(userWines[0])
-    }
-    console.log(userWines);
-  }, [userWines])
+  }, [])
   
-  console.log(userWines);
 
   async function savePlaylist(playlistId) {
     if (user) {
