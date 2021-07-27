@@ -10,9 +10,9 @@
 .indexPlaylistsButtons {
     display: flex;
     background: #26495c;
+    position: relative;
     padding: 20px;
     border-radius: 20px 20px 0 0;
-
 }
 
 .indexPlaylistsButtons button {
@@ -65,12 +65,29 @@
 
 .switchOn {
     background: #94EBFF;
+    background-size: 200% 100%;
+    background-image: 
+        linear-gradient(to left, #94EBFF 50%, rgba(255,255,255,0) 50%);
+        /* linear-gradient(to left,  rgba(255,255,255,.5) 50%, #94EBFF 50%); */
+    transition: all .25s ease-in-out;
     color: black;
     font-size: 1.1em;
-    transition: .7s;
     pointer-events: none;
 }
 .switchOff {
     background: rgba(255,255,255,.5);
-    transition: .7s;
+    background-size: 200% 100%;
+    background-image: 
+        linear-gradient(to right,  rgba(255,255,255,0) 50%, #94EBFF 50%);
+    transition: all .25s ease-in-out;
+}
+.switch1 {
+    background-position: 100% 0;
+    /* transition: .5s ease-in-out; */
+
+}
+.switch2 {
+    background-position: -100% 0;
+    /* transition: .5s ease-in-out; */
+
 }

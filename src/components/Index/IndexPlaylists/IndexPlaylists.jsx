@@ -43,8 +43,8 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
     return (
         <div className="indexPlaylists">
             <div className="indexPlaylistsButtons">
-                <button className={`${myPlaylistPage ? 'switchOn' : 'switchOff'}`} onClick={() => handleToggle(userWines[0])}>Created</button>
-                <button className={`${myPlaylistPage ? 'switchOff' : 'switchOn'}`} onClick={() => handleToggle(savedWines[0])}>Saved</button>
+                <button className={`${myPlaylistPage ? 'switchOn switch1' : 'switchOff'}`} onClick={() => handleToggle(userWines[0])}>Created</button>
+                <button className={`${myPlaylistPage ? 'switchOff' : 'switchOn switch2'}`} onClick={() => handleToggle(savedWines[0])}>Saved</button>
             </div>
             <div className="indexPlaylistsWines">
                 {(myPlaylistPage ? userWines : savedWines).map(w => (
