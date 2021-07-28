@@ -1,0 +1,161 @@
+.ShowPlaylistsPage {
+    height: 93.7vh;
+    overflow: auto;
+}
+
+.ShowPlaylistsPageContainer {
+    /* transform: translateY(-10%); */
+    width: 90%;
+    margin: 0 auto;
+    background: #669bbc;
+    display: flex;
+    flex-direction: column;
+}
+
+.showLeftHand {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 70%;
+    overflow-y: auto;
+    border-radius: 0 0 20px 20px;
+    background: #780000;
+    color: white;
+}
+.showRightHand {
+    margin: 20px auto;
+    width: 95%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.showLeftHand img {
+    padding: 10px;
+    max-height: 150px;
+}
+.showPageLeftHandImage {
+    /* float: left; */
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+.showPlaylistsPageImageDetails {
+    padding: 10px;
+    /* display: flex; */
+    float: left;
+    flex-direction: column;
+    text-align: left;
+}
+.resultsPageWineDetails {
+    padding: 10px;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.showWineTitle {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.show-playlist-holder {
+    background: #780000;
+    margin: 0 auto;
+    margin-bottom: 2vmin;
+    border-radius: 10px;
+    width: 100%;
+}
+.rightHandContainer {
+    width: 100%;
+}
+
+.playlist-info {
+    padding: 5px;
+    background: rgba(0,0,0,.5);
+    border-radius: 10px 10px 0 0;
+    color: white;
+    display: flex;
+    /* justify-content: space-between; */
+    /* border-radius: 10px 10px 0 0; */
+    /* grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "profile title button"
+    "profile user button"; */
+    height: 70px;
+}
+.playlist-info img {
+    height: 60px;
+    min-width: 60px;
+    margin: 0 10px 0 5px;
+}
+.playlist-info-name {
+    width: 100%;
+}
+
+.playlist-profile {
+    grid-area: profile;
+    border-radius: 50%;
+    /* margin: 1vmin 2vmin; */
+}
+.playlist-songs {
+    /* background: #003049; */
+    color: white;
+    border-radius: 0 0 10px 10px;
+}
+.playlist-title {
+    grid-area: title;
+    text-align: start;
+    font-weight: bold;
+    font-size: 1.6em;
+    overflow: hidden;
+    height: 35px;
+}
+.playlist-user {
+    grid-area: user;
+    text-align: start;
+}
+.playlist-button {
+    grid-area: button;
+    padding: .5em;
+}
+
+.song-holder {
+    max-height: 25vmin;
+    overflow-y: auto;
+    padding: 1vmin 0;
+}
+
+.playlistHolderSong {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+}
+
+.playlistHolderSongInfo {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.playlistHolderSong img {
+    margin: 0 10px; 
+}
+
+.playlistHolderSongLength {
+    height: 56px;
+    width: 90%;
+    margin: 0 20px 5px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+/* .playlistDownloads {
+    color: white;
+} */
+
+.icons {
+    margin-right: 5px;
+}
