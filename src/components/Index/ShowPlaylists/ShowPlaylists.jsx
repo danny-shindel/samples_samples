@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as winesAPI from '../../../utilities/wines-api';
-// import "./ResultsPage.css";
+import "./ShowPlaylists.css";
 
 export default function ShowPlaylists({ user, setClick, wine, setWine, allWines, setAllWines, myPlaylistPage, setPlaylist, setEdit, savedPlaylistPage, userWines, savedWines }) {
   const history = useHistory();
@@ -60,20 +60,21 @@ export default function ShowPlaylists({ user, setClick, wine, setWine, allWines,
   }
 
   return (
-    <div className="resultsPage">
-      <div className="resultsPageContainer">
-        <div className="leftHand">
-          <p className="wineTitle">{wine && wine.title}</p>
-          <div className="resultsPageLeftHandImage">
+    <div className="ShowPlaylistsPage">
+      <div className="ShowPlaylistsPageContainer">
+        <div className="showLeftHand">
+          
+          <div className="showPageLeftHandImage">
             <img src="https://i.imgur.com/8upb3GM.png" alt="wine bottle"></img>
-            <div className="resultsPageImageDetails">
+            <div className="showPlaylistsPageImageDetails">
+              <p className="showWineTitle">{wine && wine.title}</p>
               <p>{wine && wine.variety}</p>
               <p>Region: {wine && wine.region_1}</p>
               <p>Province: {wine && wine.province}</p>
+              <p>{wine && wine.description}</p>
             </div>
           </div>
           <div className="resultsPageWineDetails">
-            <p>{wine && wine.description}</p>
             {user ?
               <>
                 <Link to='/create'><button onClick={handleCreateClick}>Create Playlist</button></Link>
@@ -86,10 +87,10 @@ export default function ShowPlaylists({ user, setClick, wine, setWine, allWines,
           </div>
 
         </div>
-        <div className="rightHand">
+        <div className="showRightHand">
           {wine && wine.playlists.map(playlist => (
             <div className="rightHandContainer">
-              <div className="playlist-holder">
+              <div className="show-playlist-holder">
                 <div className="playlist-info">
                   <div className="playlist-info-userImage">
                     <img src={playlist.user.profilePic} className="playlist-profile" />

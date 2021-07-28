@@ -40,7 +40,7 @@ export default function IndexPage({ user, myPlaylistPage, setPlaylists, setClick
   return (
     <div className="indexPage">
       <div className="indexPageContainer">
-        <div className="indexPlaylists">
+        <div className="indexPlaylists1">
           <IndexPlaylists user={user} userWines={userWines} savedWines={savedWines} wine={wine} setWine={setWine} setSavedPlaylistPage={setSavedPlaylistPage} myPlaylistPage={myPlaylistPage} setMyPlaylistPage={setMyPlaylistPage} />
         </div>
         <div className="showPlaylists">

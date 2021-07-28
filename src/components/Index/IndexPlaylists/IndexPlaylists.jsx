@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./IndexPlaylists.css";
 
@@ -16,7 +16,6 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
           ))
           setWine(wineCopy);
           if (!myPlaylistPage) setSavedPlaylistPage(true);
-        //   history.push("/results");
         }
     
     function handleToggle(wine) {
@@ -31,9 +30,7 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
             setWine(wineCopy);
             setMyPlaylistPage(!myPlaylistPage);
             if (!myPlaylistPage) setSavedPlaylistPage(true);
-            //   history.push("/results");
         } else {
-            console.log("HEYO")
             setWine(false);
             setMyPlaylistPage(!myPlaylistPage);
             if (!myPlaylistPage) setSavedPlaylistPage(true);
@@ -49,7 +46,8 @@ export default function IndexPlaylists({user, userWines, savedWines, myPlaylistP
             <div className="indexPlaylistsWines">
                 {(myPlaylistPage ? userWines : savedWines).map(w => (
                 <div>
-                    <button onClick={() => handleDetails(w)}>{w.title}</button>
+                    {console.log(w.title === wine.title)}
+                    <button className={`${wine.title === w.title ? 'selected' : ''}`} onClick={() => handleDetails(w)}>{w.title}</button>
                 </div>
              ))}
             </div>
