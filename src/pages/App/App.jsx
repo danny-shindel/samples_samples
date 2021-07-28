@@ -10,6 +10,7 @@ import CreatePage from '../CreatePage/CreatePage';
 import LoadPage from '../LoadPage/LoadPage';
 import NavBar from '../../components/NavBar/NavBar';
 import * as winesAPI from "../../utilities/wines-api";
+import * as usersAPI from "../../utilities/users-api";
 
 import './App.css';
 
@@ -19,6 +20,7 @@ export default function App() {
   const [playlists, setPlaylists] = useState([]);
   const [myPlaylistPage, setMyPlaylistPage] = useState(false);
   const [user, setUser] = useState(getUser());
+  const [userNames, setUserNames] = useState(false);
   const [wine, setWine] = useState(null);
   const [wineTitles, setWineTitles] = useState([]);
   // const [userWines, setUserWines] = useState([]);
@@ -34,6 +36,10 @@ export default function App() {
   useEffect(function () {
     async function getWines() {
       const wines = await winesAPI.getAll();
+      const users = await usersAPI.getAllNames();
+      setUserNames(users.map(u => {
+        return { title: u.name, _id: u._id }
+      }) );
       setAllWines(wines);
       setWineTitles(wines.map(w => {
         return { title: w.title };
@@ -51,7 +57,7 @@ export default function App() {
   return (
     <main className="App">
       <NavBar user={user} setUser={setUser} setMyPlaylistPage={setMyPlaylistPage} />
-      { allWines.length ? user ?
+      { allWines.length && userNames ? user ?
         <>
           <Switch>
             <Route path="/results">
@@ -73,6 +79,7 @@ export default function App() {
                 wineTitles={wineTitles} 
                 setMyPlaylistPage={setMyPlaylistPage} 
                 setSavedPlaylistPage={setSavedPlaylistPage}
+                userNames={userNames}
               />
             </Route>
             <Route path="/index">

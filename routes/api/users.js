@@ -12,5 +12,7 @@ router.post('/signup', usersCtrl.createNoPic);
 router.post('/login', usersCtrl.login);
 // GET /api/users/check-token
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
+//GET /api/users/names
+router.get('/names', usersCtrl.getAllNames);
 
 module.exports = router;

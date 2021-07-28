@@ -6,7 +6,8 @@ module.exports = {
   create,
   login,
   checkToken,
-  createNoPic
+  createNoPic,
+  getAllNames
 };
 
 function checkToken(req, res) {
@@ -56,6 +57,11 @@ async function login(req, res) {
   } catch {
     res.status(400).json('Bad Credentials');
   }
+}
+
+async function getAllNames(req, res) {
+  const userNames = await User.find({}).select("name")
+  res.json(userNames);
 }
 
 /*--- Helper Functions ---*/

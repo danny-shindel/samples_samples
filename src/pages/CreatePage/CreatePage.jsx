@@ -81,6 +81,8 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
   }
 
   return (
+    <>
+    {wine && 
     <div className="createPage">
       <div className={`columns createPageMainContainer ${duplicate ? 'disablePage' : ''}`}>
         <div className="column createLeftMain">
@@ -146,5 +148,7 @@ export default function CreatePage({ wine, setWine, setAllWines, playlist, setPl
       }
       
     </div>
+    }
+  </>
   )
 }

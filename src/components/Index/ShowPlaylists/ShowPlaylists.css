@@ -1,5 +1,6 @@
 .ShowPlaylistsPage {
-    height: 93.7vh;
+    margin-top: 2vh;
+    height: 90vh;
     overflow: auto;
 }
 
@@ -13,13 +14,13 @@
 }
 
 .showLeftHand {
-    margin: 0 auto;
+    margin: 2vmin;
     display: flex;
     flex-direction: column;
     width: 95%;
-    height: 70%;
+    /* height: 70%; */
     overflow-y: auto;
-    border-radius: 0 0 20px 20px;
+    border-radius: 20px;
     background: #780000;
     color: white;
 }
