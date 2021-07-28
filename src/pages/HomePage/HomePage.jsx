@@ -1,12 +1,14 @@
 import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 import * as winesAPI from "../../utilities/wines-api";
+import * as playlistsAPI from "../../utilities/playlist-api";
 import './HomePage.css';
 
 
-export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSavedPlaylistPage }) {
+export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSavedPlaylistPage, userNames }) {
   const [search, setSearch] = useState({ title: '' });
   const [focusDiv, setFocusDiv] = useState({ id: '' });
+  const [searchUser, setSearchUser] = useState(false);
   const history = useHistory();
   // state for autocomplete feature
   const [display, setDisplay] = useState(false);
@@ -25,16 +27,22 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
   }
 
   async function handleSubmit() {
-    const wine = await winesAPI.search(search);
-    // If there is a wine of that name, then go to results page
-    if (wine) {
-      setWine(wine);
-      localStorage.setItem('wine', JSON.stringify(wine));
-      setMyPlaylistPage(false);
-      setSavedPlaylistPage(false);
-      history.push('/results');
-    } else {
-      // inform user there is no wine by that name
+    if(!searchUser){
+      const wine = await winesAPI.search(search);
+      // If there is a wine of that name, then go to results page
+      if (wine) {
+        setWine(wine);
+        localStorage.setItem('wine', JSON.stringify(wine));
+        setMyPlaylistPage(false);
+        setSavedPlaylistPage(false);
+        history.push('/results');
+      } else {
+        // inform user there is no wine by that name
+      }
+    }else{
+      const searchUserPlaylists = await playlistsAPI.getSearchPlaylists({"id": search._id});
+      //Finish functionallity of show other user playlists 
+      console.log(searchUserPlaylists);
     }
   }
 
@@ -106,7 +114,7 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
           <div id="dropdown-menu-div" className="dropdown-menu">
             {display && (
               <div id="dropdown-content-div" className="dropdown-content" style={{ overflowY: 'scroll' }}>
-                {wineTitles
+                {(searchUser ? userNames : wineTitles) 
                   .filter(({ title }) => title.toLowerCase().includes(search.title.toLowerCase()))
                   .slice(0, 20)
                   .map((wine, idx) => {
@@ -130,6 +138,8 @@ export default function HomePage({ setWine, wineTitles, setMyPlaylistPage, setSa
             )}
           </div>
         </div>
+        <button onClick={() => setSearchUser(true)}>Search User</button>
+        <button onClick={() => setSearchUser(false)}>Search Wine</button>
         <button className="homePageButton button is-link" onClick={handleSubmit}> Submit </button>
       </div>
     </div>

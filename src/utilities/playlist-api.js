@@ -6,6 +6,10 @@ export function searchAPI(search) {
     return sendRequest(`${BASE_URL}/searchAPI`, 'POST', search);
 }
 
+export function getSearchPlaylists(id) {
+    return sendRequest(`${BASE_URL}/searchPlaylists`, 'POST', id);
+}
+
 export function create(playlist) { 
     return sendRequest(`${BASE_URL}/create`, 'POST', playlist);
 };
